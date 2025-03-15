@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 interface modeType {
   mode: string;
@@ -18,3 +19,4 @@ const modeSlice = createSlice({
 
 export default modeSlice;
 export const { setMode } = modeSlice.actions;
+export const selectMode = (state: RootState) => state.modeSlice.mode;
