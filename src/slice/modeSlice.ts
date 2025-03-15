@@ -5,7 +5,7 @@ interface modeType {
   mode: string;
 }
 
-const initialState: modeType = { mode: "" };
+const initialState: modeType = { mode: "main" };
 
 const modeSlice = createSlice({
   name: "modeSlice",
