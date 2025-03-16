@@ -1,8 +1,12 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
-const SelectButton = ({ children }: { children: React.ReactNode }) => {
+const SelectButton: React.FC<{
+  onMode: () => void;
+  children: React.ReactNode;
+}> = ({ onMode, children }) => {
   return (
     <motion.button
+      onClick={onMode}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring" }}

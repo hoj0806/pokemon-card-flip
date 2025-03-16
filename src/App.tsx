@@ -19,7 +19,9 @@ const App = () => {
 
   return (
     <AppWrapper>
-      <Main />
+      {currentMode === "main" && <Main />}
+      {currentMode === "game" && <div>게임화면입니다</div>}
+      {currentMode === "docs" && <div>도감화면입니다</div>}
     </AppWrapper>
   );
 };
