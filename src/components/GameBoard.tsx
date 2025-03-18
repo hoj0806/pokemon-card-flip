@@ -13,7 +13,7 @@ const GameBoard = () => {
     <div>
       <div className='grid grid-cols-5'>
         {shuffleCards.map((card) => {
-          return <GameCard />;
+          return <GameCard {...card} />;
         })}
       </div>
     </div>
