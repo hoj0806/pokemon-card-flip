@@ -8,25 +8,16 @@ import { selectMode } from "./slice/modeSlice";
 import { AnimatePresence } from "framer-motion";
 import { fetchPokemonData } from "./util/http";
 import { useQuery } from "@tanstack/react-query";
-import { pokemons, setPokemonData } from "./slice/pokemonSlice";
-import { useAppDispatch } from "./hooks/useAppDispatch";
+// import { pokemons, setPokemonData } from "./slice/pokemonSlice";
+// import { useAppDispatch } from "./hooks/useAppDispatch";
 
 const App = () => {
   const currentMode = useAppSelector(selectMode);
-  const pokemonDatas = useAppSelector(pokemons);
-  // const [pokemonData, setPokemonData] = useState<any[]>([]);
 
-  const dispatch = useAppDispatch();
   const { data, isPending, isError } = useQuery({
     queryFn: fetchPokemonData,
     queryKey: ["pokemon"],
   });
-
-  useEffect(() => {
-    if (data) {
-      dispatch(setPokemonData(data));
-    }
-  }, [data, dispatch]);
 
   let content;
 
