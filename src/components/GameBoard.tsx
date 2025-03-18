@@ -27,18 +27,16 @@ const GameBoard = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <div className='grid grid-cols-5'>
-        {shuffleCards.map((card) => {
-          return (
-            <GameCard
-              {...card}
-              key={card.uniqueId}
-              isClickEnabled={isClickEnabled}
-            />
-          );
-        })}
-      </div>
+    <div className='grid grid-cols-5 gap-3 w-[800px]'>
+      {shuffleCards.map((card) => {
+        return (
+          <GameCard
+            {...card}
+            key={card.uniqueId}
+            isClickEnabled={isClickEnabled}
+          />
+        );
+      })}
     </div>
   );
 };

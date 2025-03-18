@@ -7,7 +7,8 @@ const GameCard: React.FC<{
   pokemonName: string;
   uniqueId: string;
   isClickEnabled: boolean;
-}> = ({ isFlied, pokemonName, uniqueId, isClickEnabled }) => {
+  imageUrl: string;
+}> = ({ isFlied, pokemonName, uniqueId, isClickEnabled, imageUrl }) => {
   const dispatch = useAppDispatch();
   const handleCardClick = () => {
     if (isClickEnabled) {
@@ -36,7 +37,7 @@ const GameCard: React.FC<{
               transform: "rotateY(180deg)",
             }}
           >
-            <img src='/image/pokeball.png' />
+            <img src='/image/pokeball.png' alt='pokeball' />
           </div>
           <div
             className='absolute inset-0 bg-red-500 text-white flex justify-center items-center rounded-lg'
@@ -45,7 +46,10 @@ const GameCard: React.FC<{
               transform: "rotateY(0deg)",
             }}
           >
-            {pokemonName}
+            <div className='flex flex-col items-center'>
+              <img src={imageUrl} alt={pokemonName} />
+              <p>{pokemonName}</p>
+            </div>
           </div>
         </motion.div>
       </motion.div>
