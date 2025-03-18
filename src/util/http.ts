@@ -1,8 +1,3 @@
-interface CustomError extends Error {
-  code?: number;
-  info?: any;
-}
-
 export const fetchPokemonData = async (): Promise<any[]> => {
   try {
     let fetchedPokemons = [];
