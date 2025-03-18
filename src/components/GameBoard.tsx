@@ -8,12 +8,12 @@ import GameCard from "./GameCard";
 const GameBoard = () => {
   const currentMode = useAppSelector(selectMode);
   const shuffleCards = useAppSelector(shuffledPokemons);
-  console.log(shuffleCards.length);
+  console.log(shuffleCards[0]);
   return (
     <div>
       <div className='grid grid-cols-5'>
         {shuffleCards.map((card) => {
-          return <GameCard {...card} />;
+          return <GameCard {...card} key={card.uniqueId} />;
         })}
       </div>
     </div>

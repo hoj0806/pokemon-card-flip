@@ -1,17 +1,24 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useAppDispatch } from "../hooks/useAppDispatch";
+import { setAllFliedTrue, setFlipCard } from "../slice/pokemonSlice";
 
 const GameCard: React.FC<{
   isFlied: boolean;
   pokemonName: string;
   number: number;
-}> = ({ isFlied, pokemonName, number }) => {
-  const [flipped, setFlipped] = useState(false);
+  uniqueId: string;
+}> = ({ isFlied, pokemonName, number, uniqueId }) => {
   const [isClickEnabled, setIsClickEnabled] = useState(false); // 클릭 활성화 상태
+  const [selectCards, setSelectCards] = useState<
+    { pokemonName: string; uniqueId: string }[]
+  >([]);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const flipTimer = setTimeout(() => {
-      setFlipped(true); // 3초 후 카드가 뒤집힘
+      dispatch(setAllFliedTrue()); // 3초 후 카드가 setFlipped뒤집힘
     }, 3000);
 
     const clickTimer = setTimeout(() => {
@@ -22,14 +29,16 @@ const GameCard: React.FC<{
       clearTimeout(flipTimer);
       clearTimeout(clickTimer); // 타이머 정리
     };
-  }, []);
+  }, [dispatch]);
 
   const handleCardClick = () => {
+    console.log(isFlied);
+    // Only allow adding the card to the selectCards if clicking is enabled
     if (isClickEnabled) {
-      setFlipped(!flipped); // 클릭 시 카드 뒤집기
+      dispatch(setFlipCard(uniqueId));
     }
   };
-
+  console.log(selectCards);
   return (
     <>
       <motion.div
@@ -41,7 +50,7 @@ const GameCard: React.FC<{
           className='absolute inset-0'
           style={{ transformStyle: "preserve-3d" }}
           animate={{
-            rotateY: flipped ? 180 : 0,
+            rotateY: isFlied ? 180 : 0,
           }}
           transition={{ duration: 0.8 }}
         >
@@ -49,16 +58,16 @@ const GameCard: React.FC<{
             className='absolute inset-0 bg-blue-500 text-white flex justify-center items-center rounded-lg'
             style={{
               backfaceVisibility: "hidden",
-              transform: "rotateY(0deg)",
+              transform: "rotateY(180deg)",
             }}
           >
-            front
+            back
           </div>
           <div
             className='absolute inset-0 bg-red-500 text-white flex justify-center items-center rounded-lg'
             style={{
               backfaceVisibility: "hidden",
-              transform: "rotateY(180deg)",
+              transform: "rotateY(0deg)",
             }}
           >
             {pokemonName}
