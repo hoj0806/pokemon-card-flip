@@ -5,10 +5,9 @@ import { setFlipCard } from "../slice/pokemonSlice";
 const GameCard: React.FC<{
   isFlied: boolean;
   pokemonName: string;
-  number: number;
   uniqueId: string;
   isClickEnabled: boolean;
-}> = ({ isFlied, pokemonName, number, uniqueId, isClickEnabled }) => {
+}> = ({ isFlied, pokemonName, uniqueId, isClickEnabled }) => {
   const dispatch = useAppDispatch();
   const handleCardClick = () => {
     if (isClickEnabled) {
@@ -26,7 +25,7 @@ const GameCard: React.FC<{
           className='absolute inset-0'
           style={{ transformStyle: "preserve-3d" }}
           animate={{
-            rotateY: isFlied ? 180 : 0,
+            rotateY: isFlied ? 0 : 180,
           }}
           transition={{ duration: 0.8 }}
         >

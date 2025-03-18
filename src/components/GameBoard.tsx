@@ -2,7 +2,7 @@ import { useAppSelector } from "../hooks/useAppSelector";
 import { shuffledPokemons } from "../slice/pokemonSlice";
 import { useState, useEffect } from "react";
 import { useAppDispatch } from "../hooks/useAppDispatch";
-import { setAllFliedTrue } from "../slice/pokemonSlice";
+import { setAllCardsFlip } from "../slice/pokemonSlice";
 
 import GameCard from "./GameCard";
 const GameBoard = () => {
@@ -13,7 +13,7 @@ const GameBoard = () => {
 
   useEffect(() => {
     const flipTimer = setTimeout(() => {
-      dispatch(setAllFliedTrue()); // 3초 후 카드가 setFlipped뒤집힘
+      dispatch(setAllCardsFlip()); // 3초 후 카드가 setFlipped뒤집힘
     }, 3000);
 
     const clickTimer = setTimeout(() => {
