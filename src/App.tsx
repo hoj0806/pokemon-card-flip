@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 import Main from "./components/Main";
 import SelectDifference from "./components/SelectDifference";
@@ -8,6 +7,7 @@ import { selectMode } from "./slice/modeSlice";
 import { AnimatePresence } from "framer-motion";
 import { fetchPokemonData } from "./util/http";
 import { useQuery } from "@tanstack/react-query";
+import GameBoard from "./components/GameBoard";
 // import { pokemons, setPokemonData } from "./slice/pokemonSlice";
 // import { useAppDispatch } from "./hooks/useAppDispatch";
 
@@ -34,8 +34,8 @@ const App = () => {
       <AnimatePresence mode='wait'>
         {currentMode === "main" && <Main />}
         {currentMode === "selectDifference" && <SelectDifference />}
-        {currentMode === "game" && <div>게임화면입니다</div>}
         {currentMode === "docs" && <div>도감화면입니다</div>}
+        {currentMode === "game" && <GameBoard />}
       </AnimatePresence>
     );
   }
