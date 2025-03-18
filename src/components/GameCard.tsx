@@ -30,13 +30,13 @@ const GameCard: React.FC<{
           transition={{ duration: 0.8 }}
         >
           <div
-            className='absolute inset-0 bg-blue-500 text-white flex justify-center items-center rounded-lg'
+            className='absolute inset-0 border-black border-2 text-white flex justify-center items-center rounded-lg'
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
             }}
           >
-            back
+            <img src='/image/pokeball.png' />
           </div>
           <div
             className='absolute inset-0 bg-red-500 text-white flex justify-center items-center rounded-lg'
