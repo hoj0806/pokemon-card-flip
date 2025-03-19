@@ -1,14 +1,23 @@
 import { motion } from "framer-motion";
 
 const GameCard: React.FC<{
-  isFlied: boolean;
+  isFliped: boolean;
   pokemonName: string;
   imageUrl: string;
   uniqueId: string;
+  isCorrect: boolean;
+
   handleCardClick: (uniqueId: string, pokemonName: string) => void;
-}> = ({ isFlied, pokemonName, imageUrl, handleCardClick, uniqueId }) => {
+}> = ({
+  isFliped,
+  pokemonName,
+  imageUrl,
+  handleCardClick,
+  uniqueId,
+  isCorrect,
+}) => {
   return (
-    <>
+    <div className={isCorrect ? "invisible" : ""}>
       <motion.div
         className='relative w-32 h-48 bg-white rounded-lg'
         onClick={() => handleCardClick(uniqueId, pokemonName)}
@@ -18,7 +27,7 @@ const GameCard: React.FC<{
           className='absolute inset-0'
           style={{ transformStyle: "preserve-3d" }}
           animate={{
-            rotateY: isFlied ? 0 : 180,
+            rotateY: isFliped ? 0 : 180,
           }}
           transition={{ duration: 0.8 }}
         >
@@ -45,7 +54,7 @@ const GameCard: React.FC<{
           </div>
         </motion.div>
       </motion.div>
-    </>
+    </div>
   );
 };
 

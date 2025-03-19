@@ -1,7 +1,7 @@
 import { useAppSelector } from "../hooks/useAppSelector";
 import {
   clenUpSelectCard,
-  deleteCorrectShuffleCards,
+  setCorrectCard,
   pickCard,
   selectCard,
   setFlipCard,
@@ -33,7 +33,7 @@ const GameBoard = () => {
       const id = selectCards[0];
       if (firstName === secondName) {
         const flipTimer = setTimeout(() => {
-          dispatch(deleteCorrectShuffleCards(firstName));
+          dispatch(setCorrectCard(firstName));
           dispatch(clenUpSelectCard());
         }, 1000);
         return () => clearTimeout(flipTimer); // 클린업
@@ -73,6 +73,7 @@ const GameBoard = () => {
             key={card.uniqueId}
             handleCardClick={handleCardClick}
             uniqueId={card.uniqueId}
+            isCorrect={card.isCorrect}
           />
         );
       })}
