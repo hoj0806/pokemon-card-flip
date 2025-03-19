@@ -1,5 +1,10 @@
 import { useAppSelector } from "../hooks/useAppSelector";
-import { shuffledPokemons } from "../slice/pokemonSlice";
+import {
+  pickCard,
+  selectCard,
+  setFlipCard,
+  shuffledPokemons,
+} from "../slice/pokemonSlice";
 import { useState, useEffect } from "react";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { setAllCardsFlip } from "../slice/pokemonSlice";
@@ -10,7 +15,14 @@ const GameBoard = () => {
   const [isClickEnabled, setIsClickEnabled] = useState(false); // 클릭 활성화 상태
 
   const dispatch = useAppDispatch();
-
+  const selectCards = useAppSelector(selectCard);
+  const handleCardClick = (uniqueId: string, pokemonName: string) => {
+    if (isClickEnabled) {
+      dispatch(setFlipCard(uniqueId));
+      dispatch(pickCard({ uniqueId, pokemonName }));
+    }
+  };
+  console.log(selectCards);
   useEffect(() => {
     const flipTimer = setTimeout(() => {
       dispatch(setAllCardsFlip()); // 3초 후 카드가 setFlipped뒤집힘
@@ -33,7 +45,8 @@ const GameBoard = () => {
           <GameCard
             {...card}
             key={card.uniqueId}
-            isClickEnabled={isClickEnabled}
+            handleCardClick={handleCardClick}
+            uniqueId={card.uniqueId}
           />
         );
       })}

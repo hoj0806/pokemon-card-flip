@@ -9,10 +9,17 @@ interface Pokemon {
   isFlied: boolean;
 }
 
+interface SelctCardType {
+  pokemonName: string;
+  uniqueId: string; // 셔플된 카드마다 구별되는 고유한 ID
+}
+
 interface pokemonSliceType {
   data: Pokemon[]; // 원본 데이터
   shuffledData: Pokemon[]; // 셔플된 데이터
+  selectCard: SelctCardType[];
 }
+
 const imageUrl =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
@@ -272,6 +279,7 @@ const initialState: pokemonSliceType = {
     },
   ],
   shuffledData: [],
+  selectCard: [],
 };
 
 // 배열을 셔플하는 함수
@@ -322,6 +330,9 @@ const pokemonSlice = createSlice({
         return pokemon;
       });
     },
+    pickCard: (state, action: PayloadAction<SelctCardType>) => {
+      state.selectCard.push(action.payload);
+    },
   },
 });
 
@@ -331,7 +342,9 @@ export const {
   generateShuffledPokemon,
   setAllCardsFlip,
   setFlipCard,
+  pickCard,
 } = pokemonSlice.actions;
 export const pokemons = (state: RootState) => state.pokemonSlice.data;
 export const shuffledPokemons = (state: RootState) =>
   state.pokemonSlice.shuffledData;
+export const selectCard = (state: RootState) => state.pokemonSlice.selectCard;
