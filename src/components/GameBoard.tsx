@@ -1,5 +1,13 @@
 import { useAppSelector } from "../hooks/useAppSelector";
-import { shuffledPokemons } from "../slice/pokemonSlice";
+import {
+  clenUpSelectCard,
+  setCorrectCard,
+  pickCard,
+  selectCard,
+  setFlipCard,
+  setWrongCardFlip,
+  shuffledPokemons,
+} from "../slice/pokemonSlice";
 import { useState, useEffect } from "react";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { setAllCardsFlip } from "../slice/pokemonSlice";
@@ -10,6 +18,36 @@ const GameBoard = () => {
   const [isClickEnabled, setIsClickEnabled] = useState(false); // 클릭 활성화 상태
 
   const dispatch = useAppDispatch();
+  const selectCards = useAppSelector(selectCard);
+  const handleCardClick = (uniqueId: string, pokemonName: string) => {
+    if (isClickEnabled && selectCards.length < 2) {
+      dispatch(setFlipCard(uniqueId));
+      dispatch(pickCard({ pokemonName, uniqueId }));
+    }
+  };
+
+  useEffect(() => {
+    if (selectCards.length === 2) {
+      const firstName = selectCards[0].pokemonName;
+      const secondName = selectCards[1].pokemonName;
+      const id = selectCards[0];
+      if (firstName === secondName) {
+        const flipTimer = setTimeout(() => {
+          dispatch(setCorrectCard(firstName));
+          dispatch(clenUpSelectCard());
+        }, 1000);
+        return () => clearTimeout(flipTimer); // 클린업
+      } else {
+        const flipTimer = setTimeout(() => {
+          dispatch(setWrongCardFlip(firstName));
+          dispatch(setWrongCardFlip(secondName));
+          dispatch(clenUpSelectCard());
+        }, 1000);
+
+        return () => clearTimeout(flipTimer); // 클린업
+      }
+    }
+  }, [selectCards, dispatch]);
 
   useEffect(() => {
     const flipTimer = setTimeout(() => {
@@ -33,7 +71,9 @@ const GameBoard = () => {
           <GameCard
             {...card}
             key={card.uniqueId}
-            isClickEnabled={isClickEnabled}
+            handleCardClick={handleCardClick}
+            uniqueId={card.uniqueId}
+            isCorrect={card.isCorrect}
           />
         );
       })}

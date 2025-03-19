@@ -1,32 +1,33 @@
 import { motion } from "framer-motion";
-import { useAppDispatch } from "../hooks/useAppDispatch";
-import { setFlipCard } from "../slice/pokemonSlice";
 
 const GameCard: React.FC<{
-  isFlied: boolean;
+  isFliped: boolean;
   pokemonName: string;
-  uniqueId: string;
-  isClickEnabled: boolean;
   imageUrl: string;
-}> = ({ isFlied, pokemonName, uniqueId, isClickEnabled, imageUrl }) => {
-  const dispatch = useAppDispatch();
-  const handleCardClick = () => {
-    if (isClickEnabled) {
-      dispatch(setFlipCard(uniqueId));
-    }
-  };
+  uniqueId: string;
+  isCorrect: boolean;
+
+  handleCardClick: (uniqueId: string, pokemonName: string) => void;
+}> = ({
+  isFliped,
+  pokemonName,
+  imageUrl,
+  handleCardClick,
+  uniqueId,
+  isCorrect,
+}) => {
   return (
-    <>
+    <div className={isCorrect ? "invisible" : ""}>
       <motion.div
         className='relative w-32 h-48 bg-white rounded-lg'
-        onClick={handleCardClick}
+        onClick={() => handleCardClick(uniqueId, pokemonName)}
         style={{ perspective: "1000px" }}
       >
         <motion.div
           className='absolute inset-0'
           style={{ transformStyle: "preserve-3d" }}
           animate={{
-            rotateY: isFlied ? 0 : 180,
+            rotateY: isFliped ? 0 : 180,
           }}
           transition={{ duration: 0.8 }}
         >
@@ -53,7 +54,7 @@ const GameCard: React.FC<{
           </div>
         </motion.div>
       </motion.div>
-    </>
+    </div>
   );
 };
 
