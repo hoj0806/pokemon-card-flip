@@ -337,6 +337,11 @@ const pokemonSlice = createSlice({
           : pokemon
       );
     },
+    deleteCorrectShuffleCards: (state, action: PayloadAction<string>) => {
+      state.shuffledData = state.shuffledData.filter(
+        (data) => data.pokemonName !== action.payload
+      );
+    },
 
     pickCard: (state, action: PayloadAction<SelctCardType>) => {
       state.selectCard.push(action.payload);
@@ -356,6 +361,7 @@ export const {
   pickCard,
   setWrongCardFlip,
   clenUpSelectCard,
+  deleteCorrectShuffleCards,
 } = pokemonSlice.actions;
 export const pokemons = (state: RootState) => state.pokemonSlice.data;
 export const shuffledPokemons = (state: RootState) =>

@@ -1,6 +1,7 @@
 import { useAppSelector } from "../hooks/useAppSelector";
 import {
   clenUpSelectCard,
+  deleteCorrectShuffleCards,
   pickCard,
   selectCard,
   setFlipCard,
@@ -31,6 +32,11 @@ const GameBoard = () => {
       const secondName = selectCards[1].pokemonName;
       const id = selectCards[0];
       if (firstName === secondName) {
+        const flipTimer = setTimeout(() => {
+          dispatch(deleteCorrectShuffleCards(firstName));
+          dispatch(clenUpSelectCard());
+        }, 1000);
+        return () => clearTimeout(flipTimer); // 클린업
       } else {
         const flipTimer = setTimeout(() => {
           dispatch(setWrongCardFlip(firstName));
