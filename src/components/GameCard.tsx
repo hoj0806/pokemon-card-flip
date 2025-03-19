@@ -1,7 +1,4 @@
 import { motion } from "framer-motion";
-import { useAppDispatch } from "../hooks/useAppDispatch";
-import { selectCard, setFlipCard } from "../slice/pokemonSlice";
-import { useAppSelector } from "../hooks/useAppSelector";
 
 const GameCard: React.FC<{
   isFlied: boolean;

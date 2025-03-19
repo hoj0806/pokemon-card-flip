@@ -330,8 +330,19 @@ const pokemonSlice = createSlice({
         return pokemon;
       });
     },
+    setWrongCardFlip: (state, action: PayloadAction<string>) => {
+      state.shuffledData = state.shuffledData.map((pokemon) =>
+        pokemon.pokemonName === action.payload
+          ? { ...pokemon, isFlied: false }
+          : pokemon
+      );
+    },
+
     pickCard: (state, action: PayloadAction<SelctCardType>) => {
       state.selectCard.push(action.payload);
+    },
+    clenUpSelectCard: (state) => {
+      state.selectCard = [];
     },
   },
 });
@@ -343,6 +354,8 @@ export const {
   setAllCardsFlip,
   setFlipCard,
   pickCard,
+  setWrongCardFlip,
+  clenUpSelectCard,
 } = pokemonSlice.actions;
 export const pokemons = (state: RootState) => state.pokemonSlice.data;
 export const shuffledPokemons = (state: RootState) =>

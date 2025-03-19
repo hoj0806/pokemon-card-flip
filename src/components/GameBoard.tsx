@@ -1,8 +1,10 @@
 import { useAppSelector } from "../hooks/useAppSelector";
 import {
+  clenUpSelectCard,
   pickCard,
   selectCard,
   setFlipCard,
+  setWrongCardFlip,
   shuffledPokemons,
 } from "../slice/pokemonSlice";
 import { useState, useEffect } from "react";
@@ -17,12 +19,30 @@ const GameBoard = () => {
   const dispatch = useAppDispatch();
   const selectCards = useAppSelector(selectCard);
   const handleCardClick = (uniqueId: string, pokemonName: string) => {
-    if (isClickEnabled) {
+    if (isClickEnabled && selectCards.length < 2) {
       dispatch(setFlipCard(uniqueId));
-      dispatch(pickCard({ uniqueId, pokemonName }));
+      dispatch(pickCard({ pokemonName, uniqueId }));
     }
   };
-  console.log(selectCards);
+
+  useEffect(() => {
+    if (selectCards.length === 2) {
+      const firstName = selectCards[0].pokemonName;
+      const secondName = selectCards[1].pokemonName;
+      const id = selectCards[0];
+      if (firstName === secondName) {
+      } else {
+        const flipTimer = setTimeout(() => {
+          dispatch(setWrongCardFlip(firstName));
+          dispatch(setWrongCardFlip(secondName));
+          dispatch(clenUpSelectCard());
+        }, 1000);
+
+        return () => clearTimeout(flipTimer); // 클린업
+      }
+    }
+  }, [selectCards, dispatch]);
+
   useEffect(() => {
     const flipTimer = setTimeout(() => {
       dispatch(setAllCardsFlip()); // 3초 후 카드가 setFlipped뒤집힘
