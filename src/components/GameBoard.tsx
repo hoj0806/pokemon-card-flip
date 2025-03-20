@@ -17,6 +17,7 @@ import GameCard from "./GameCard";
 import GameTimer from "./GameTimer";
 import GameEnd from "./GameEnd";
 import ScoreBoard from "./ScoreBoard";
+import { increaseScore } from "../slice/scoreSlice";
 const GameBoard = () => {
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [isWin, setIsWin] = useState(false);
@@ -43,6 +44,7 @@ const GameBoard = () => {
       const secondName = selectCards[1].pokemonName;
       if (firstName === secondName) {
         const flipTimer = setTimeout(() => {
+          dispatch(increaseScore());
           dispatch(setCorrectCard(firstName));
           dispatch(clenUpSelectCard());
         }, 1000);
