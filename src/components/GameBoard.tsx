@@ -7,6 +7,7 @@ import {
   setFlipCard,
   setWrongCardFlip,
   shuffledPokemons,
+  correctPokemons,
 } from "../slice/pokemonSlice";
 import { useState, useEffect } from "react";
 import { useAppDispatch } from "../hooks/useAppDispatch";
@@ -16,12 +17,16 @@ import GameCard from "./GameCard";
 import GameTimer from "./GameTimer";
 const GameBoard = () => {
   const [isTimeOut, setIsTimeOut] = useState(false);
+  const [isWin, setIsWin] = useState(false);
+
+  const isEndGame = isWin || isTimeOut;
+
   const shuffleCards = useAppSelector(shuffledPokemons);
   const [isClickEnabled, setIsClickEnabled] = useState(false); // 클릭 활성화 상태
 
   const dispatch = useAppDispatch();
   const selectCards = useAppSelector(selectCard);
-
+  const correctPokemonsData = useAppSelector(correctPokemons);
   const handleCardClick = (uniqueId: string, pokemonName: string) => {
     if (isClickEnabled && selectCards.length < 2) {
       dispatch(setFlipCard(uniqueId));
@@ -66,9 +71,15 @@ const GameBoard = () => {
     };
   }, [dispatch]);
 
+  useEffect(() => {
+    if (correctPokemonsData.length === shuffleCards.length) {
+      setIsWin(true);
+    }
+  }, [correctPokemonsData.length, shuffleCards.length]);
+
   return (
     <>
-      <GameTimer setIsTimeOut={setIsTimeOut} duration={10} />
+      <GameTimer setIsTimeOut={setIsTimeOut} duration={30} />
       <div className='grid grid-cols-5 gap-3 w-[800px]'>
         {shuffleCards.map((card) => {
           return (
@@ -82,7 +93,7 @@ const GameBoard = () => {
           );
         })}
       </div>
-      {isTimeOut && <div>게임종료!</div>}
+      {isEndGame && <div>게임종료!</div>}
     </>
   );
 };
