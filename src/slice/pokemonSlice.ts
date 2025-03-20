@@ -351,7 +351,6 @@ const pokemonSlice = createSlice({
       state.shuffledData = shuffleArray(withUniqueIds); // 셔플
     },
     setAllCardsFlip: (state) => {
-      // 셔플된 데이터의 모든 카드를 업데이트하여 isFliped를 true로 설정
       state.shuffledData = state.shuffledData.map((pokemon) => ({
         ...pokemon,
         isFliped: false,
