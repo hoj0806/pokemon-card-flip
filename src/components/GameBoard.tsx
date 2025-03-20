@@ -15,6 +15,7 @@ import { setAllCardsFlip } from "../slice/pokemonSlice";
 
 import GameCard from "./GameCard";
 import GameTimer from "./GameTimer";
+import GameEnd from "./GameEnd";
 const GameBoard = () => {
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [isWin, setIsWin] = useState(false);
@@ -93,7 +94,7 @@ const GameBoard = () => {
           );
         })}
       </div>
-      {isEndGame && <div>게임종료!</div>}
+      {isEndGame && <GameEnd />}
     </>
   );
 };
