@@ -7,6 +7,7 @@ import {
   shuffledPokemons,
 } from "../slice/pokemonSlice";
 import { useAppSelector } from "../hooks/useAppSelector";
+import { resetScore } from "../slice/scoreSlice";
 
 const GameEnd: React.FC<{
   setIsWin: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,9 +16,10 @@ const GameEnd: React.FC<{
   setResetBoardKey: React.Dispatch<React.SetStateAction<number>>;
 }> = ({ setIsWin, setIsTimeOut, setResetTimerKey, setResetBoardKey }) => {
   const dispatch = useAppDispatch();
-  const suData = useAppSelector(shuffledPokemons);
+
   const handleMainButton = () => {
     dispatch(setMode("main"));
+    dispatch(resetScore());
   };
 
   const handleResetButton = () => {
@@ -27,7 +29,7 @@ const GameEnd: React.FC<{
     setIsTimeOut(false);
     setResetTimerKey((prev) => prev + 1);
     setResetBoardKey((prev) => prev + 1);
-    console.log(suData);
+    dispatch(resetScore());
   };
 
   return (
