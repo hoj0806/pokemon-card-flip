@@ -4,10 +4,10 @@ import { setMode } from "../slice/modeSlice";
 import {
   generateShuffledPokemon,
   clenUpSelectCard,
-  shuffledPokemons,
 } from "../slice/pokemonSlice";
+
+import { resetScore, resetCombo, currentScore } from "../slice/scoreSlice";
 import { useAppSelector } from "../hooks/useAppSelector";
-import { resetScore } from "../slice/scoreSlice";
 
 const GameEnd: React.FC<{
   setIsWin: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +20,7 @@ const GameEnd: React.FC<{
   const handleMainButton = () => {
     dispatch(setMode("main"));
     dispatch(resetScore());
+    dispatch(resetCombo());
   };
 
   const handleResetButton = () => {
@@ -30,8 +31,10 @@ const GameEnd: React.FC<{
     setResetTimerKey((prev) => prev + 1);
     setResetBoardKey((prev) => prev + 1);
     dispatch(resetScore());
+    dispatch(resetCombo());
   };
 
+  const score = useAppSelector(currentScore);
   return (
     <div className='w-full h-full bg-black opacity-70 absolute top-0 flex items-center justify-center'>
       <div className='w-[700px] h-[400px] bg-white rounded-md text-center p-4 flex flex-col items-center gap-10'>
@@ -42,6 +45,7 @@ const GameEnd: React.FC<{
         <SelectButton onMode={handleResetButton} buttonColor='#A855F7'>
           다시하기
         </SelectButton>
+        <div>Your Score : {score}</div>
       </div>
     </div>
   );

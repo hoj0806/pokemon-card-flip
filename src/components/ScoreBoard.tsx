@@ -3,7 +3,11 @@ import { currentScore } from "../slice/scoreSlice";
 
 const ScoreBoard = () => {
   const score = useAppSelector(currentScore);
-  return <h2>Score : {score}</h2>;
+  return (
+    <>
+      <h2>Score : {score}</h2>
+    </>
+  );
 };
 
 export default ScoreBoard;
