@@ -6,6 +6,7 @@ const GameCard: React.FC<{
   imageUrl: string;
   uniqueId: string;
   isCorrect: boolean;
+  resetGameBoardKey: number;
 
   handleCardClick: (uniqueId: string, pokemonName: string) => void;
 }> = ({
@@ -15,21 +16,25 @@ const GameCard: React.FC<{
   handleCardClick,
   uniqueId,
   isCorrect,
+  resetGameBoardKey,
 }) => {
   return (
     <div className={isCorrect ? "invisible" : ""}>
       <motion.div
-        className='relative w-32 h-48 bg-white rounded-lg'
+        className='relative w-32 h-48 bg-white rounded-lg cursor-pointer'
         onClick={() => handleCardClick(uniqueId, pokemonName)}
         style={{ perspective: "1000px" }}
+        key={resetGameBoardKey}
       >
         <motion.div
           className='absolute inset-0'
           style={{ transformStyle: "preserve-3d" }}
+          initial={{ rotateY: 0 }}
           animate={{
             rotateY: isFliped ? 0 : 180,
           }}
           transition={{ duration: 0.8 }}
+          key={resetGameBoardKey}
         >
           <div
             className='absolute inset-0 border-black border-2 text-white flex justify-center items-center rounded-lg'

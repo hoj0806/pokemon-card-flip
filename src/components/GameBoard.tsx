@@ -21,13 +21,14 @@ const GameBoard = () => {
   const [isWin, setIsWin] = useState(false);
 
   const isEndGame = isWin || isTimeOut;
-
   const shuffleCards = useAppSelector(shuffledPokemons);
   const [isClickEnabled, setIsClickEnabled] = useState(false); // 클릭 활성화 상태
-
+  const [resetTimerKey, setResetTimerKey] = useState(0);
+  const [resetGameBoardKey, setResetBoardKey] = useState(0);
   const dispatch = useAppDispatch();
   const selectCards = useAppSelector(selectCard);
   const correctPokemonsData = useAppSelector(correctPokemons);
+
   const handleCardClick = (uniqueId: string, pokemonName: string) => {
     if (isClickEnabled && selectCards.length < 2) {
       dispatch(setFlipCard(uniqueId));
@@ -80,7 +81,11 @@ const GameBoard = () => {
 
   return (
     <>
-      <GameTimer setIsTimeOut={setIsTimeOut} duration={30} />
+      <GameTimer
+        setIsTimeOut={setIsTimeOut}
+        duration={10}
+        resetTimerKey={resetTimerKey}
+      />
       <div className='grid grid-cols-5 gap-3 w-[800px]'>
         {shuffleCards.map((card) => {
           return (
@@ -90,11 +95,19 @@ const GameBoard = () => {
               handleCardClick={handleCardClick}
               uniqueId={card.uniqueId}
               isCorrect={card.isCorrect}
+              resetGameBoardKey={resetGameBoardKey}
             />
           );
         })}
       </div>
-      {isEndGame && <GameEnd />}
+      {isEndGame && (
+        <GameEnd
+          setIsWin={setIsWin}
+          setResetTimerKey={setResetTimerKey}
+          setIsTimeOut={setIsTimeOut}
+          setResetBoardKey={setResetBoardKey}
+        />
+      )}
     </>
   );
 };
