@@ -405,3 +405,5 @@ export const pokemons = (state: RootState) => state.pokemonSlice.data;
 export const shuffledPokemons = (state: RootState) =>
   state.pokemonSlice.shuffledData;
 export const selectCard = (state: RootState) => state.pokemonSlice.selectCard;
+export const correctPokemons = (state: RootState) =>
+  state.pokemonSlice.shuffledData.filter((pokemon) => pokemon.isCorrect);
