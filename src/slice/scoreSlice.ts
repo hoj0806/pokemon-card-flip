@@ -12,14 +12,11 @@ const scoreSlice = createSlice({
   name: "scoreSlice",
   initialState,
   reducers: {
-    increaseScore: (state) => {
-      state.score += 1;
+    increaseByCombo: (state, action: PayloadAction<number>) => {
+      state.score += action.payload + 1;
     },
     resetScore: (state) => {
       state.score = 0;
-    },
-    increaseByCombo: (state, action: PayloadAction<number>) => {
-      state.score += action.payload;
     },
     increaseCombo: (state) => {
       state.combo += 1;
@@ -31,5 +28,7 @@ const scoreSlice = createSlice({
 });
 
 export default scoreSlice;
-export const { increaseScore, resetScore } = scoreSlice.actions;
+export const { increaseByCombo, resetScore, increaseCombo } =
+  scoreSlice.actions;
 export const currentScore = (state: RootState) => state.scoreSlice.score;
+export const combo = (state: RootState) => state.scoreSlice.combo;
