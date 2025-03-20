@@ -17,7 +17,12 @@ import GameCard from "./GameCard";
 import GameTimer from "./GameTimer";
 import GameEnd from "./GameEnd";
 import ScoreBoard from "./ScoreBoard";
-import { combo, increaseByCombo, increaseCombo } from "../slice/scoreSlice";
+import {
+  combo,
+  increaseByCombo,
+  increaseCombo,
+  resetCombo,
+} from "../slice/scoreSlice";
 const GameBoard = () => {
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [isWin, setIsWin] = useState(false);
@@ -56,12 +61,13 @@ const GameBoard = () => {
           dispatch(setWrongCardFlip(firstName));
           dispatch(setWrongCardFlip(secondName));
           dispatch(clenUpSelectCard());
+          dispatch(resetCombo());
         }, 1000);
 
         return () => clearTimeout(flipTimer); // 클린업
       }
     }
-  }, [selectCards, dispatch]);
+  }, [selectCards, dispatch, currentCombo]);
 
   useEffect(() => {
     const flipTimer = setTimeout(() => {
@@ -89,7 +95,7 @@ const GameBoard = () => {
       <ScoreBoard />
       <GameTimer
         setIsTimeOut={setIsTimeOut}
-        duration={10}
+        duration={300}
         resetTimerKey={resetTimerKey}
       />
 

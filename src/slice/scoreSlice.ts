@@ -28,7 +28,7 @@ const scoreSlice = createSlice({
 });
 
 export default scoreSlice;
-export const { increaseByCombo, resetScore, increaseCombo } =
+export const { increaseByCombo, resetScore, increaseCombo, resetCombo } =
   scoreSlice.actions;
 export const currentScore = (state: RootState) => state.scoreSlice.score;
 export const combo = (state: RootState) => state.scoreSlice.combo;
