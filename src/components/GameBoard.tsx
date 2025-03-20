@@ -16,6 +16,7 @@ import { setAllCardsFlip } from "../slice/pokemonSlice";
 import GameCard from "./GameCard";
 import GameTimer from "./GameTimer";
 import GameEnd from "./GameEnd";
+import ScoreBoard from "./ScoreBoard";
 const GameBoard = () => {
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [isWin, setIsWin] = useState(false);
@@ -81,11 +82,13 @@ const GameBoard = () => {
 
   return (
     <>
+      <ScoreBoard />
       <GameTimer
         setIsTimeOut={setIsTimeOut}
         duration={10}
         resetTimerKey={resetTimerKey}
       />
+
       <div className='grid grid-cols-5 gap-3 w-[800px]'>
         {shuffleCards.map((card) => {
           return (
