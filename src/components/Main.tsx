@@ -12,6 +12,7 @@ const Main = () => {
   const docsButtonHandler = () => {
     dispatch(setMode("docs"));
   };
+
   return (
     <div className='absolute bottom-[120px] left-1/2 -translate-x-1/2'>
       <div className='flex flex-col gap-5'>
