@@ -17,12 +17,12 @@ const Main = () => {
     <div className='absolute bottom-[120px] left-1/2 -translate-x-1/2'>
       <div className='flex flex-col gap-5'>
         <SelectButton
-          onMode={selectDifferenceButtonHandler}
+          onClick={selectDifferenceButtonHandler}
           buttonColor='#181818'
         >
           게임시작
         </SelectButton>
-        <SelectButton onMode={docsButtonHandler} buttonColor='#181818'>
+        <SelectButton onClick={docsButtonHandler} buttonColor='#181818'>
           도감보기
         </SelectButton>
       </div>

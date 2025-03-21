@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 
 const SelectButton: React.FC<{
-  onMode: () => void;
+  onClick: () => void;
   children: React.ReactNode;
   buttonColor: string;
-}> = ({ onMode, children, buttonColor }) => {
+}> = ({ onClick, children, buttonColor }) => {
   return (
     <motion.button
-      onClick={onMode}
+      onClick={onClick}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 30 }}
