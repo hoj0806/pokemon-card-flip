@@ -39,10 +39,10 @@ const GameEnd: React.FC<{
     <div className='w-full h-full bg-black opacity-70 absolute top-0 flex items-center justify-center'>
       <div className='w-[700px] h-[400px] bg-white rounded-md text-center p-4 flex flex-col items-center gap-10'>
         <p className='text-3xl text-black'>게임종료!</p>
-        <SelectButton onMode={handleMainButton} buttonColor='#22C55E'>
+        <SelectButton onClick={handleMainButton} buttonColor='#22C55E'>
           메인으로
         </SelectButton>
-        <SelectButton onMode={handleResetButton} buttonColor='#A855F7'>
+        <SelectButton onClick={handleResetButton} buttonColor='#A855F7'>
           다시하기
         </SelectButton>
         <div>Your Score : {score}</div>

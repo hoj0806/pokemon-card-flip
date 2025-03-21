@@ -8,7 +8,7 @@ const SelectDifference = () => {
 
   const easyModeButtonHandler = () => {
     dispatch(setMode("game"));
-    dispatch(generateShuffledPokemon(5));
+    dispatch(generateShuffledPokemon(2));
   };
 
   const normalModeButtonHandler = () => {
@@ -24,13 +24,13 @@ const SelectDifference = () => {
   return (
     <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
       <div className='flex flex-col gap-[80px]'>
-        <SelectButton buttonColor='#EF4444' onMode={easyModeButtonHandler}>
+        <SelectButton buttonColor='#EF4444' onClick={easyModeButtonHandler}>
           쉬움
         </SelectButton>
-        <SelectButton buttonColor='#FACC15' onMode={normalModeButtonHandler}>
+        <SelectButton buttonColor='#FACC15' onClick={normalModeButtonHandler}>
           보통
         </SelectButton>
-        <SelectButton buttonColor='#3B82F6' onMode={hardModeButtonHandler}>
+        <SelectButton buttonColor='#3B82F6' onClick={hardModeButtonHandler}>
           어려움
         </SelectButton>
       </div>
