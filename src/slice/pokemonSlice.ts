@@ -381,6 +381,9 @@ const pokemonSlice = createSlice({
       );
     },
 
+    deleteSamePickCard: (state) => {
+      state.selectCard.pop();
+    },
     pickCard: (state, action: PayloadAction<SelctCardType>) => {
       state.selectCard.push(action.payload);
     },
@@ -400,6 +403,7 @@ export const {
   setWrongCardFlip,
   clenUpSelectCard,
   setCorrectCard,
+  deleteSamePickCard,
 } = pokemonSlice.actions;
 export const pokemons = (state: RootState) => state.pokemonSlice.data;
 export const shuffledPokemons = (state: RootState) =>

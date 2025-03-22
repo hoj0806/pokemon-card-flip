@@ -8,6 +8,7 @@ import {
   setWrongCardFlip,
   shuffledPokemons,
   correctPokemons,
+  deleteSamePickCard,
 } from "../slice/pokemonSlice";
 import { useState, useEffect } from "react";
 import { useAppDispatch } from "../hooks/useAppDispatch";
@@ -26,6 +27,7 @@ import {
 const GameBoard = () => {
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [isWin, setIsWin] = useState(false);
+
   const isEndGame = isWin || isTimeOut;
 
   const shuffleCards = useAppSelector(shuffledPokemons);
@@ -49,23 +51,30 @@ const GameBoard = () => {
     if (selectCards.length === 2) {
       const firstName = selectCards[0].pokemonName;
       const secondName = selectCards[1].pokemonName;
-      if (firstName === secondName) {
-        const flipTimer = setTimeout(() => {
-          dispatch(increaseByCombo(currentCombo));
-          dispatch(setCorrectCard(firstName));
-          dispatch(clenUpSelectCard());
-          dispatch(increaseCombo());
-        }, 1000);
-        return () => clearTimeout(flipTimer); // 클린업
-      } else {
-        const flipTimer = setTimeout(() => {
-          dispatch(setWrongCardFlip(firstName));
-          dispatch(setWrongCardFlip(secondName));
-          dispatch(clenUpSelectCard());
-          dispatch(resetCombo());
-        }, 1000);
+      const firstUniqueId = selectCards[0].uniqueId;
+      const secondUniqueId = selectCards[1].uniqueId;
 
-        return () => clearTimeout(flipTimer); // 클린업
+      if (firstUniqueId === secondUniqueId) {
+        dispatch(deleteSamePickCard());
+      } else {
+        if (firstName === secondName) {
+          const flipTimer = setTimeout(() => {
+            dispatch(increaseByCombo(currentCombo));
+            dispatch(setCorrectCard(firstName));
+            dispatch(clenUpSelectCard());
+            dispatch(increaseCombo());
+          }, 1000);
+          return () => clearTimeout(flipTimer); // 클린업
+        } else {
+          const flipTimer = setTimeout(() => {
+            dispatch(setWrongCardFlip(firstName));
+            dispatch(setWrongCardFlip(secondName));
+            dispatch(clenUpSelectCard());
+            dispatch(resetCombo());
+          }, 1000);
+
+          return () => clearTimeout(flipTimer); // 클린업
+        }
       }
     }
   }, [selectCards, dispatch, currentCombo]);
