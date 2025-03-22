@@ -6,10 +6,10 @@ const GameTimer: React.FC<{
   resetTimerKey: number;
 }> = ({ setIsTimeOut, duration, resetTimerKey }) => {
   return (
-    <div className='mx-auto w-[1200px]'>
+    <div className='w-[500px] mx-auto md:w-[700px] lg:w-[1000px] xl:w-[1200px]'>
       <motion.div
         key={resetTimerKey}
-        className='h-[20px] bg-red-500'
+        className='h-[30px] bg-red-500'
         initial={{ width: "100%" }}
         animate={{ width: "0%" }}
         transition={{ duration, ease: "linear" }}

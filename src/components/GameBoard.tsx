@@ -103,14 +103,13 @@ const GameBoard = () => {
   }
 
   return (
-    <>
+    <div className='relative'>
       <ScoreBoard />
-      {/* <GameTimer
+      <GameTimer
         setIsTimeOut={setIsTimeOut}
         duration={300}
         resetTimerKey={resetTimerKey}
-      /> */}
-
+      />
       <div className={gameBoardClass}>
         {shuffleCards.map((card) => {
           return (
@@ -133,7 +132,7 @@ const GameBoard = () => {
           setResetBoardKey={setResetBoardKey}
         />
       )}
-    </>
+    </div>
   );
 };
 
