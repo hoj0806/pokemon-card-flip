@@ -26,8 +26,8 @@ import {
 const GameBoard = () => {
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [isWin, setIsWin] = useState(false);
-
   const isEndGame = isWin || isTimeOut;
+
   const shuffleCards = useAppSelector(shuffledPokemons);
   const [isClickEnabled, setIsClickEnabled] = useState(false); // 클릭 활성화 상태
   const [resetTimerKey, setResetTimerKey] = useState(0);
@@ -35,8 +35,9 @@ const GameBoard = () => {
   const dispatch = useAppDispatch();
   const selectCards = useAppSelector(selectCard);
   const correctPokemonsData = useAppSelector(correctPokemons);
-
   const currentCombo = useAppSelector(combo);
+
+  let gameBoardClass = "";
   const handleCardClick = (uniqueId: string, pokemonName: string) => {
     if (isClickEnabled && selectCards.length < 2) {
       dispatch(setFlipCard(uniqueId));
@@ -90,16 +91,27 @@ const GameBoard = () => {
     }
   }, [correctPokemonsData.length, shuffleCards.length]);
 
+  if (shuffleCards.length === 20) {
+    gameBoardClass =
+      "grid grid-cols-5 mx-auto  gap-4 mt-[300px] w-[400px] md:mt-[250px]  md:w-[600px] lg:grid-cols-5 lg:mt-[200px] xl:w-[700px] xl:mt-[140px]";
+  } else if (shuffleCards.length === 30) {
+    gameBoardClass =
+      "grid grid-cols-5 mx-auto  gap-4 mt-[200px] w-[400px] md:mt-[170px] md:grid-cols-6 md:w-[600px] lg:grid-cols-10 lg:w-[1050px] lg:mt-[250px] xl:w-[1250px] xl:mt-[200px]";
+  } else {
+    gameBoardClass =
+      "grid grid-cols-5 mx-auto  gap-4 mt-[100px] w-[400px] md:mt-[150px] md:grid-cols-8 md:w-[800px] lg:grid-cols-10 lg:w-[1050px] lg:mt-[200px] xl:w-[1250px] xl:mt-[150px]";
+  }
+
   return (
     <>
       <ScoreBoard />
-      <GameTimer
+      {/* <GameTimer
         setIsTimeOut={setIsTimeOut}
         duration={300}
         resetTimerKey={resetTimerKey}
-      />
+      /> */}
 
-      <div className='grid grid-cols-5 gap-3 w-[800px]'>
+      <div className={gameBoardClass}>
         {shuffleCards.map((card) => {
           return (
             <GameCard

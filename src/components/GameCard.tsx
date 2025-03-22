@@ -19,9 +19,9 @@ const GameCard: React.FC<{
   resetGameBoardKey,
 }) => {
   return (
-    <div className={isCorrect ? "invisible" : ""}>
+    <div className={`${isCorrect ? "invisible" : ""}`}>
       <motion.div
-        className='relative w-32 h-48 bg-white rounded-lg cursor-pointer'
+        className='relative w-[70px] h-[90px] bg-white rounded-lg cursor-pointer md:w-[90px] md:h-[120px] lg:w-[100px] lg:h-[140px] xl:w-[120px] xl:h-[170px]'
         onClick={() => handleCardClick(uniqueId, pokemonName)}
         style={{ perspective: "1000px" }}
         key={resetGameBoardKey}
@@ -43,7 +43,7 @@ const GameCard: React.FC<{
               transform: "rotateY(180deg)",
             }}
           >
-            <img src='/image/pokeball.png' alt='pokeball' />
+            {/* <img src='/image/pokeball.png' alt='pokeball' /> */}
           </div>
           <div
             className='absolute inset-0 bg-red-500 text-white flex justify-center items-center rounded-lg'
@@ -53,7 +53,7 @@ const GameCard: React.FC<{
             }}
           >
             <div className='flex flex-col items-center'>
-              <img src={imageUrl} alt={pokemonName} />
+              {/* <img src={imageUrl} alt={pokemonName} /> */}
               <p>{pokemonName}</p>
             </div>
           </div>

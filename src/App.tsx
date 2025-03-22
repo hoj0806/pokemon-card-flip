@@ -5,7 +5,6 @@ import AppWrapper from "./layout/AppWrapper";
 import GameBoard from "./components/GameBoard";
 import { useAppSelector } from "./hooks/useAppSelector";
 import { selectMode } from "./slice/modeSlice";
-import { AnimatePresence } from "framer-motion";
 import { fetchPokemonData } from "./util/http";
 import { useQuery } from "@tanstack/react-query";
 // import { pokemons, setPokemonData } from "./slice/pokemonSlice";
@@ -32,11 +31,8 @@ const App = () => {
   if (data) {
     content = (
       <>
-        <AnimatePresence>{currentMode === "main" && <Main />}</AnimatePresence>
-        <AnimatePresence>
-          {currentMode === "selectDifference" && <SelectDifference />}
-        </AnimatePresence>
-
+        {currentMode === "main" && <Main />}
+        {currentMode === "selectDifference" && <SelectDifference />}
         {currentMode === "docs" && <div>도감화면입니다</div>}
         {currentMode === "game" && <GameBoard />}
       </>
