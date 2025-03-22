@@ -8,7 +8,7 @@ const SelectDifference = () => {
 
   const easyModeButtonHandler = () => {
     dispatch(setMode("game"));
-    dispatch(generateShuffledPokemon(2));
+    dispatch(generateShuffledPokemon(10));
   };
 
   const normalModeButtonHandler = () => {
