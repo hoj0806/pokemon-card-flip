@@ -33,8 +33,8 @@ const App = () => {
       <>
         {currentMode === "main" && <Main />}
         {currentMode === "selectDifference" && <SelectDifference />}
-        {currentMode === "docs" && <div>도감화면입니다</div>}
         {currentMode === "game" && <GameBoard />}
+        {currentMode === "docs" && <div>도감화면입니다</div>}
       </>
     );
   }

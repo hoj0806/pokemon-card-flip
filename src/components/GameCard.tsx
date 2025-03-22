@@ -25,6 +25,7 @@ const GameCard: React.FC<{
         onClick={() => handleCardClick(uniqueId, pokemonName)}
         style={{ perspective: "1000px" }}
         key={resetGameBoardKey}
+        whileHover={{ transition: { duration: 0.2 }, scale: 1.1 }}
       >
         <motion.div
           className='absolute inset-0'
