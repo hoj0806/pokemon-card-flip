@@ -7,6 +7,7 @@ import { useAppSelector } from "./hooks/useAppSelector";
 import { selectMode } from "./slice/modeSlice";
 import { fetchPokemonData } from "./util/http";
 import { useQuery } from "@tanstack/react-query";
+import Pokedex from "./components/Pokedex";
 // import { pokemons, setPokemonData } from "./slice/pokemonSlice";
 // import { useAppDispatch } from "./hooks/useAppDispatch";
 
@@ -34,7 +35,7 @@ const App = () => {
         {currentMode === "main" && <Main />}
         {currentMode === "selectDifference" && <SelectDifference />}
         {currentMode === "game" && <GameBoard />}
-        {currentMode === "docs" && <div>도감화면입니다</div>}
+        {currentMode === "docs" && <Pokedex />}
       </>
     );
   }
