@@ -1,9 +1,7 @@
-import PokedexDetail from "./PokedexDetail";
 import PokedexList from "./PokedexList";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-
-// import {AnimatePresense}
+import PokedexListDetail from "./PokedexListDetail";
 const Pokedex = () => {
   const [pokedexDetailPopupOpen, setPokedexDetailPopupOpen] = useState(false);
   const [selectPokemon, setSelectPokemon] = useState("");
@@ -17,14 +15,14 @@ const Pokedex = () => {
         />
       </div>
 
-      <AnimatePresence>
-        {pokedexDetailPopupOpen && (
-          <PokedexDetail
-            pokemonName={selectPokemon}
+      {pokedexDetailPopupOpen && (
+        <AnimatePresence>
+          <PokedexListDetail
+            selectPokemon={selectPokemon}
             setPokedexDetailPopupOpen={setPokedexDetailPopupOpen}
           />
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </div>
   );
 };

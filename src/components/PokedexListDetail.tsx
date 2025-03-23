@@ -3,15 +3,16 @@ import { useAppSelector } from "../hooks/useAppSelector";
 import { pokemons } from "../slice/pokemonSlice";
 import { motion } from "framer-motion";
 
-const PokemonDetail: React.FC<{
-  pokemonName: string;
+const PokedexListDetail: React.FC<{
+  selectPokemon: string;
   setPokedexDetailPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ pokemonName, setPokedexDetailPopupOpen }) => {
+}> = ({ selectPokemon, setPokedexDetailPopupOpen }) => {
   const pokemonDatas = useAppSelector(pokemons);
   const selectPokemonData = pokemonDatas.find(
-    (data) => data.pokemonName === pokemonName
+    (data) => data.pokemonName === selectPokemon
   );
 
+  console.log(selectPokemonData);
   const cardRef = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState<string>("");
   const [glowPosition, setGlowPosition] = useState<string>("50% 50%");
@@ -97,7 +98,7 @@ const PokemonDetail: React.FC<{
   #B41E14 75%,    /* 더 어두운 빨간색 (rgba(180, 30, 20, 1)) */
   #AC1A10 80%,    /* 보간된 색상 */
   #A4160C 90%,    /* 보간된 색상 */
-  #96140A 100%    /* 가장 어두운 빨간색 (rgba(150, 
+  #96140A 100%    /* 가장 어두운 빨간색 (rgba(150,
     )`,
           boxShadow: transform
             ? "0 20px 30px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.5)" // hover 시 그림자 강조
@@ -138,4 +139,4 @@ const PokemonDetail: React.FC<{
   );
 };
 
-export default PokemonDetail;
+export default PokedexListDetail;
