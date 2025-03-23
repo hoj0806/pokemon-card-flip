@@ -1,15 +1,26 @@
 import { useAppSelector } from "../hooks/useAppSelector";
 import { pokemons } from "../slice/pokemonSlice";
 import { motion } from "framer-motion";
-const PokedexList = () => {
+const PokedexList: React.FC<{
+  setPokedexDetailPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectPokemon: React.Dispatch<React.SetStateAction<string>>;
+}> = ({ setPokedexDetailPopupOpen, setSelectPokemon }) => {
   const pokemonData = useAppSelector(pokemons);
-  console.log(pokemonData);
+
+  const handleClickPokeDexListItem = (pokemonName: string) => {
+    setPokedexDetailPopupOpen(true);
+    setSelectPokemon(pokemonName);
+  };
   return (
     <ol className='bg-white h-full rounded-xl overflow-y-auto grid grid-cols-5 place-items-center gap-7 py-3'>
       {pokemonData.map((data) => {
         return (
-          <div>
-            <li className='rounded-full border border-black w-[100px] h-[100px] cursor-pointer'>
+          <div
+            className='cursor-pointer'
+            onClick={() => handleClickPokeDexListItem(data.pokemonName)}
+            key={data.id}
+          >
+            <li className='rounded-full border border-black w-[100px] h-[100px]'>
               <motion.img
                 src={data.imageUrl}
                 alt={data.pokemonName}
