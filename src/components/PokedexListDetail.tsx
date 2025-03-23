@@ -81,7 +81,7 @@ const PokedexListDetail: React.FC<{
       {/* Wrapper with blur effect */}
       <div
         ref={cardRef}
-        className='w-[400px] h-[600px] font-bold p-4 text-right text-[#181a1a] rounded-lg shadow-lg relative transition-all duration-300 ease-out'
+        className='w-[400px] h-[600px] font-bold p-4 text-right text-[#181a1a] rounded-lg shadow-lg relative transition-all duration-300 ease-out cursor-pointer'
         style={{
           transform,
           background: `linear-gradient(
