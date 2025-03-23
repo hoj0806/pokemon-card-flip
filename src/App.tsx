@@ -47,6 +47,7 @@ const App = () => {
       </>
     );
   }
+
   return <AppWrapper>{content}</AppWrapper>;
 };
 
