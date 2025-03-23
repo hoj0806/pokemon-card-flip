@@ -33,13 +33,14 @@ interface SelctCardType {
 type PokemonDataArray = PokemonData[];
 
 // 셔플 데이터 배열 타입
-
 type shuffleDataArray = shuffledDataType[];
+
+type selectCardDataArray = SelctCardType[];
 
 interface pokemonSliceType {
   data: PokemonDataArray; // 원본 데이터
   shuffledData: shuffleDataArray; // 셔플된 데이터
-  selectCard: SelctCardType[];
+  selectCard: selectCardDataArray;
 }
 
 const initialState: pokemonSliceType = {
