@@ -37,15 +37,17 @@ const GameCard: React.FC<{
           transition={{ duration: 0.8 }}
           key={resetGameBoardKey}
         >
+          {/* 뒷면 (Pokéball) */}
           <div
-            className='absolute inset-0 border-black border-2 text-white flex justify-center items-center rounded-lg'
+            className='absolute inset-0 border-black border-2 rounded-lg bg-cover bg-center'
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
+              backgroundImage: "url('/image/pokeball.png')",
             }}
-          >
-            {/* <img src='/image/pokeball.png' alt='pokeball' /> */}
-          </div>
+          />
+
+          {/* 앞면 (포켓몬 카드) */}
           <div
             className='absolute inset-0 bg-red-500 text-white flex justify-center items-center rounded-lg'
             style={{
@@ -54,8 +56,8 @@ const GameCard: React.FC<{
             }}
           >
             <div className='flex flex-col items-center'>
-              {/* <img src={imageUrl} alt={pokemonName} /> */}
-              <p>{pokemonName}</p>
+              <img src={imageUrl} alt={pokemonName} className='w-full' />
+              <p className='hidden md:block'>{pokemonName}</p>
             </div>
           </div>
         </motion.div>
