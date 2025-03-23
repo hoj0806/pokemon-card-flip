@@ -1,6 +1,7 @@
 import SelectButton from "../ui/SelectButton";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { setMode } from "../slice/modeSlice";
+import Logo from "./Logo";
 
 const Main = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +16,7 @@ const Main = () => {
 
   return (
     <div className='absolute bottom-[120px] left-1/2 -translate-x-1/2'>
+      <Logo />
       <div className='flex flex-col gap-5'>
         <SelectButton
           onClick={selectDifferenceButtonHandler}
