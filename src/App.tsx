@@ -8,14 +8,14 @@ import { selectMode } from "./slice/modeSlice";
 import { fetchPokemonData } from "./util/http";
 import { useQuery } from "@tanstack/react-query";
 import Pokedex from "./components/Pokedex";
-import { useEffect, useState } from "react";
-// import { pokemons, setPokemonData } from "./slice/pokemonSlice";
-// import { useAppDispatch } from "./hooks/useAppDispatch";
+import { useEffect } from "react";
+import { setPokemonData } from "./slice/pokemonSlice";
+import { useAppDispatch } from "./hooks/useAppDispatch";
 
 const App = () => {
   const currentMode = useAppSelector(selectMode);
+  const dispatch = useAppDispatch();
 
-  const [test, setTest] = useState<any[]>([]);
   const { data, isPending, isError } = useQuery({
     queryFn: fetchPokemonData,
     queryKey: ["pokemon"],
@@ -23,12 +23,10 @@ const App = () => {
 
   useEffect(() => {
     if (data) {
-      setTest(data);
+      dispatch(setPokemonData(data));
     }
-  }, [data]);
+  }, [data, dispatch]);
 
-  console.log(test);
-  console.log(fetchPokemonData);
   let content;
 
   if (isPending) {
