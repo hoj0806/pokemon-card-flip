@@ -11,8 +11,8 @@ const PokedexListDetail: React.FC<{
   const selectPokemonData = pokemonDatas.find(
     (data) => data.pokemonName === selectPokemon
   );
+  console.log(pokemonDatas);
 
-  console.log(selectPokemonData);
   const cardRef = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState<string>("");
   const [glowPosition, setGlowPosition] = useState<string>("50% 50%");
