@@ -11,6 +11,7 @@ import Pokedex from "./components/Pokedex";
 import { useEffect } from "react";
 import { setPokemonData } from "./slice/pokemonSlice";
 import { useAppDispatch } from "./hooks/useAppDispatch";
+import LoadingIndicator from "./components/LoadingIndicator";
 
 const App = () => {
   const currentMode = useAppSelector(selectMode);
@@ -30,7 +31,7 @@ const App = () => {
   let content;
 
   if (isPending) {
-    content = <div>로딩중입니다...</div>;
+    content = <LoadingIndicator />;
   }
 
   if (isError) {
