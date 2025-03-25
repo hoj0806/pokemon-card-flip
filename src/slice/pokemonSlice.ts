@@ -59,7 +59,6 @@ const shuffleArray = (array: shuffleDataArray) => {
   return shuffled;
 };
 
-// 셔플된 카드를 생성하는 리듀서
 const pokemonSlice = createSlice({
   name: "pokemonSlice",
   initialState,
@@ -110,7 +109,6 @@ const pokemonSlice = createSlice({
           : data
       );
     },
-
     deleteSamePickCard: (state) => {
       state.selectCard.pop();
     },
@@ -119,6 +117,38 @@ const pokemonSlice = createSlice({
     },
     clenUpSelectCard: (state) => {
       state.selectCard = [];
+    },
+
+    // New reducers for sorting
+    sortById: (state, action) => {
+      const sortOrder = action.payload; // 'asc' 또는 'desc'
+      state.data = [...state.data].sort((a, b) =>
+        sortOrder === "asc" ? a.id - b.id : b.id - a.id
+      );
+    },
+    sortByName: (state, action) => {
+      const sortOrder = action.payload; // 'asc' 또는 'desc'
+      state.data = [...state.data].sort((a, b) =>
+        sortOrder === "asc"
+          ? a.pokemonName.localeCompare(b.pokemonName, "ko")
+          : b.pokemonName.localeCompare(a.pokemonName, "ko")
+      );
+    },
+
+    sortByType: (state, action: PayloadAction<"asc" | "desc">) => {
+      const sortOrder = action.payload; // 'asc' 또는 'desc'
+
+      state.data = [...state.data].sort((a, b) => {
+        const typeA = a.types[0]; // 포켓몬 A의 첫 번째 타입
+        const typeB = b.types[0]; // 포켓몬 B의 첫 번째 타입
+
+        // 정렬 기준에 맞게 비교
+        if (sortOrder === "asc") {
+          return typeA.localeCompare(typeB); // 오름차순
+        } else {
+          return typeB.localeCompare(typeA); // 내림차순
+        }
+      });
     },
   },
 });
@@ -134,7 +164,11 @@ export const {
   clenUpSelectCard,
   setCorrectCard,
   deleteSamePickCard,
+  sortById,
+  sortByName,
+  sortByType,
 } = pokemonSlice.actions;
+
 export const pokemons = (state: RootState) => state.pokemonSlice.data;
 export const shuffledPokemons = (state: RootState) =>
   state.pokemonSlice.shuffledData;

@@ -1,19 +1,33 @@
-import { useAppSelector } from "../hooks/useAppSelector";
-import { pokemons } from "../slice/pokemonSlice";
 import { motion } from "framer-motion";
+
+interface PokemonAbility {
+  abilityKoreanName: string;
+}
+
+interface PokemonData {
+  id: number;
+  abilities: PokemonAbility[];
+  height: number;
+  weight: number;
+  types: string[];
+  isFliped: boolean;
+  isCorrect: boolean;
+  imageUrl: string;
+  pokemonName: string;
+}
+
 const PokedexList: React.FC<{
   setPokedexDetailPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectPokemon: React.Dispatch<React.SetStateAction<string>>;
-}> = ({ setPokedexDetailPopupOpen, setSelectPokemon }) => {
-  const pokemonData = useAppSelector(pokemons);
-
+  sortedPokemons: PokemonData[];
+}> = ({ setPokedexDetailPopupOpen, setSelectPokemon, sortedPokemons }) => {
   const handleClickPokeDexListItem = (pokemonName: string) => {
     setPokedexDetailPopupOpen(true);
     setSelectPokemon(pokemonName);
   };
   return (
     <ol className='bg-white h-full rounded-xl overflow-y-auto grid grid-cols-5 place-items-center gap-7 py-3'>
-      {pokemonData.map((data) => {
+      {sortedPokemons.map((data) => {
         return (
           <div
             className='cursor-pointer'
