@@ -20,11 +20,11 @@ const Main = () => {
       <div className='flex flex-col gap-5'>
         <SelectButton
           onClick={selectDifferenceButtonHandler}
-          buttonColor='#181818'
+          buttonColor='#87CEEB'
         >
           게임시작
         </SelectButton>
-        <SelectButton onClick={docsButtonHandler} buttonColor='#181818'>
+        <SelectButton onClick={docsButtonHandler} buttonColor='#32CD32'>
           도감보기
         </SelectButton>
       </div>
