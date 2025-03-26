@@ -92,7 +92,7 @@ const PokedexListDetail: React.FC<{
     return (
       gradients[type] ||
       `linear-gradient(145deg, #A8A878 0%, #787860 50%, #585848 100%)`
-    ); // 기본값(노멀 타입 느낌)
+    ); // 기본값(노멀 타입 )
   };
 
   const primaryType = selectPokemonData!.types[0]; // 첫 번째 타입 기준
