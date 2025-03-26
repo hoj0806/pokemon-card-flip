@@ -1,6 +1,6 @@
 import "./App.css";
 import Main from "./components/Main";
-import SelectDifference from "./components/SelectDifference";
+import SelectDifference from "./components/SelectDifficulty";
 import AppWrapper from "./layout/AppWrapper";
 import GameBoard from "./components/GameBoard";
 import { useAppSelector } from "./hooks/useAppSelector";

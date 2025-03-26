@@ -3,7 +3,7 @@ import { useAppDispatch } from "../hooks/useAppDispatch";
 import { setMode } from "../slice/modeSlice";
 import { generateShuffledPokemon } from "../slice/pokemonSlice";
 
-const SelectDifference = () => {
+const SelectDifficulty = () => {
   const dispatch = useAppDispatch();
 
   const easyModeButtonHandler = () => {
@@ -38,4 +38,4 @@ const SelectDifference = () => {
   );
 };
 
-export default SelectDifference;
+export default SelectDifficulty;
