@@ -1,30 +1,30 @@
 import SelectButton from "../ui/SelectButton";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { setMode } from "../slice/modeSlice";
-import Logo from "./Logo";
+import PokeFlipLogo from "./PokeFlipLogo";
 
 const Main = () => {
   const dispatch = useAppDispatch();
 
-  const selectDifferenceButtonHandler = () => {
+  const selectDifficultyButtonHandler = () => {
     dispatch(setMode("selectDifference"));
   };
 
-  const docsButtonHandler = () => {
+  const pokeDexButtonHandler = () => {
     dispatch(setMode("docs"));
   };
 
   return (
     <div className='absolute bottom-[120px] left-1/2 -translate-x-1/2'>
-      <Logo />
+      <PokeFlipLogo />
       <div className='flex flex-col gap-5'>
         <SelectButton
-          onClick={selectDifferenceButtonHandler}
+          onClick={selectDifficultyButtonHandler}
           buttonColor='#87CEEB'
         >
           게임시작
         </SelectButton>
-        <SelectButton onClick={docsButtonHandler} buttonColor='#32CD32'>
+        <SelectButton onClick={pokeDexButtonHandler} buttonColor='#32CD32'>
           도감보기
         </SelectButton>
       </div>
