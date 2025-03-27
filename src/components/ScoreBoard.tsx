@@ -22,7 +22,7 @@ const ScoreBoard = () => {
   }, [score, highScores, dispatch]);
 
   return (
-    <div className='absolute md:top-16 right-1/2 translate-x-1/2 top-[50px] flex gap-2'>
+    <div className='top-[50px] flex gap-10'>
       <Score text='score'>{score}</Score>
       <Score text='highscore'>{highScores}</Score>
       <Score text='combo'>{currentCombo}</Score>

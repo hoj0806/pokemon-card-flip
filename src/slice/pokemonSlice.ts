@@ -23,6 +23,7 @@ interface shuffledDataType {
   imageUrl: string;
   uniqueId: string;
   isCorrect: boolean;
+  types: string[];
 }
 
 interface SelctCardType {

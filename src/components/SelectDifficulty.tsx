@@ -8,17 +8,17 @@ const SelectDifficulty = () => {
 
   const easyModeButtonHandler = () => {
     dispatch(setMode("game"));
-    dispatch(generateShuffledPokemon(10));
+    dispatch(generateShuffledPokemon(6));
   };
 
   const normalModeButtonHandler = () => {
     dispatch(setMode("game"));
-    dispatch(generateShuffledPokemon(15));
+    dispatch(generateShuffledPokemon(10));
   };
 
   const hardModeButtonHandler = () => {
     dispatch(setMode("game"));
-    dispatch(generateShuffledPokemon(20));
+    dispatch(generateShuffledPokemon(15));
   };
 
   return (

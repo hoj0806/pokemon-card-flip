@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useAppSelector } from "../hooks/useAppSelector";
 import { pokemons } from "../slice/pokemonSlice";
 import { motion } from "framer-motion";
+import { getGradientByType } from "../util/getGradientByType";
 
 const PokedexListDetail: React.FC<{
   selectPokemon: string;
@@ -68,36 +69,9 @@ const PokedexListDetail: React.FC<{
     };
   }, []);
 
-  const getGradientByType = (type: string): string => {
-    const gradients: { [key: string]: string } = {
-      불꽃: `linear-gradient(145deg, #FF3B30 0%, #D6281E 50%, #96140A 100%)`,
-      물: `linear-gradient(145deg, #30A2FF 0%, #1E66D6 50%, #0A3696 100%)`,
-      풀: `linear-gradient(145deg, #3BFF30 0%, #1ED628 50%, #0A9614 100%)`,
-      전기: `linear-gradient(145deg, #FFD700 0%, #E6C200 50%, #B89C00 100%)`,
-      얼음: `linear-gradient(145deg, #A0EFFF 0%, #50C8E6 50%, #0A96B8 100%)`,
-      격투: `linear-gradient(145deg, #D63434 0%, #A02525 50%, #701818 100%)`,
-      독: `linear-gradient(145deg, #B050C8 0%, #7A3696 50%, #561078 100%)`,
-      땅: `linear-gradient(145deg, #E0C080 0%, #C8A050 50%, #A08030 100%)`,
-      비행: `linear-gradient(145deg, #A0C8FF 0%, #70A0E6 50%, #5078C8 100%)`,
-      에스퍼: `linear-gradient(145deg, #FF70A0 0%, #E65078 50%, #C83050 100%)`,
-      벌레: `linear-gradient(145deg, #A0C850 0%, #789C30 50%, #506A20 100%)`,
-      바위: `linear-gradient(145deg, #C8B878 0%, #A09050 50%, #786830 100%)`,
-      고스트: `linear-gradient(145deg, #705898 0%, #503878 50%, #301850 100%)`,
-      드래곤: `linear-gradient(145deg, #7860E0 0%, #5038C8 50%, #3010A0 100%)`,
-      악: `linear-gradient(145deg, #505050 0%, #282828 50%, #101010 100%)`,
-      강철: `linear-gradient(145deg, #B8B8D0 0%, #9090B0 50%, #70708A 100%)`,
-      페어리: `linear-gradient(145deg, #FFB0FF 0%, #E690E6 50%, #C870C8 100%)`,
-    };
-
-    return (
-      gradients[type] ||
-      `linear-gradient(145deg, #A8A878 0%, #787860 50%, #585848 100%)`
-    ); // 기본값(노멀 타입 )
-  };
-
   const primaryType = selectPokemonData!.types[0]; // 첫 번째 타입 기준
-  console.log(primaryType);
   const backgroundGradient = getGradientByType(primaryType);
+
   if (!selectPokemonData) return null;
 
   return (
