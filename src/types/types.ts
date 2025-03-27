@@ -23,3 +23,7 @@ export interface GameCardProps {
   type: string;
   handleCardClick: (uniqueId: string, pokemonName: string) => void;
 }
+
+export interface GameEndPros {
+  isWin: boolean;
+}

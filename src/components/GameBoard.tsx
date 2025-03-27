@@ -24,18 +24,19 @@ import {
   increaseCombo,
   resetCombo,
 } from "../slice/scoreSlice";
+
 const GameBoard = () => {
+  const dispatch = useAppDispatch();
   const shuffleCards = useAppSelector(shuffledPokemons);
+  const selectCards = useAppSelector(selectCard);
 
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [isWin, setIsWin] = useState(false);
+  const isEndGame = isWin || isTimeOut;
   const [isClickEnabled, setIsClickEnabled] = useState(false);
 
-  const dispatch = useAppDispatch();
-  const selectCards = useAppSelector(selectCard);
   const correctPokemonsData = useAppSelector(correctPokemons);
   const currentCombo = useAppSelector(combo);
-  const isEndGame = isWin || isTimeOut;
 
   let gameBoardClass = "";
 
@@ -62,7 +63,7 @@ const GameBoard = () => {
             dispatch(setCorrectCard(firstName));
             dispatch(clenUpSelectCard());
             dispatch(increaseCombo());
-          }, 1000);
+          }, 100);
           return () => clearTimeout(flipTimer); // 클린업
         } else {
           const flipTimer = setTimeout(() => {
@@ -70,7 +71,7 @@ const GameBoard = () => {
             dispatch(setWrongCardFlip(secondName));
             dispatch(clenUpSelectCard());
             dispatch(resetCombo());
-          }, 1000);
+          }, 850);
 
           return () => clearTimeout(flipTimer); // 클린업
         }
@@ -112,7 +113,7 @@ const GameBoard = () => {
 
   return (
     <div className='relative p-8 flex flex-col items-center justify-center gap-6'>
-      <GameTimer setIsTimeOut={setIsTimeOut} duration={1000} />
+      <GameTimer setIsTimeOut={setIsTimeOut} duration={100} />
       <ScoreBoard />
 
       <div className={gameBoardClass}>
@@ -131,7 +132,7 @@ const GameBoard = () => {
           );
         })}
       </div>
-      {isEndGame && <GameEnd setIsWin={setIsWin} setIsTimeOut={setIsTimeOut} />}
+      {isEndGame && <GameEnd isWin={isWin} />}
     </div>
   );
 };
