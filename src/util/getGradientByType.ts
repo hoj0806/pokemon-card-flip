@@ -1,6 +1,6 @@
 export const getGradientByType = (type: string): string => {
   const gradients: { [key: string]: string } = {
-    격투: `linear-gradient(145deg, #EC5A4A 0%, #D64638 30%, #C13428 60%, #A0201A 85%, #751711 100%)`,
+    격투: `linear-gradient(145deg, #E87D3E 0%, #D36A2A 30%, #B8561E 60%, #8F3E14 85%, #6D2A0A 100%)`,
     노말: `linear-gradient(145deg, #C0C0B0 0%, #AFAF98 30%, #9A9A88 60%, #808078 85%, #606060 100%)`,
     독: `linear-gradient(145deg, #D070E6 0%, #B658C6 30%, #9444A6 60%, #713085 85%, #5E2385 100%)`,
     드래곤: `linear-gradient(145deg, #A080F8 0%, #8A6AE0 30%, #7354C8 60%, #5C3EB0 85%, #402098 100%)`,
@@ -20,5 +20,5 @@ export const getGradientByType = (type: string): string => {
     강철: `linear-gradient(145deg, #D0D0F0 0%, #B8B8D8 30%, #9C9CC0 60%, #7E7EA0 85%, #686890 100%)`,
   };
 
-  return gradients[type]; // 기본값(노멀 타입)
+  return gradients[type];
 };
