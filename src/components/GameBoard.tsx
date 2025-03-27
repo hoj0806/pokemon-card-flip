@@ -30,7 +30,7 @@ const GameBoard = () => {
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [isWin, setIsWin] = useState(false);
   const [isClickEnabled, setIsClickEnabled] = useState(false);
-  const [resetTimerKey, setResetTimerKey] = useState(0);
+
   const [resetGameBoardKey, setResetBoardKey] = useState(0);
   const dispatch = useAppDispatch();
   const selectCards = useAppSelector(selectCard);
@@ -39,6 +39,7 @@ const GameBoard = () => {
   const isEndGame = isWin || isTimeOut;
 
   let gameBoardClass = "";
+
   const handleCardClick = (uniqueId: string, pokemonName: string) => {
     if (isClickEnabled && selectCards.length < 2) {
       dispatch(setFlipCard(uniqueId));
@@ -111,9 +112,9 @@ const GameBoard = () => {
   }
 
   return (
-    <div className='relative p-8'>
+    <div className='relative p-8 flex flex-col items-center justify-center gap-6'>
+      <GameTimer setIsTimeOut={setIsTimeOut} duration={1000} />
       <ScoreBoard />
-      <GameTimer setIsTimeOut={setIsTimeOut} duration={300} />
 
       <div className={gameBoardClass}>
         {shuffleCards.map((card) => {
@@ -132,7 +133,6 @@ const GameBoard = () => {
       {isEndGame && (
         <GameEnd
           setIsWin={setIsWin}
-          setResetTimerKey={setResetTimerKey}
           setIsTimeOut={setIsTimeOut}
           setResetBoardKey={setResetBoardKey}
         />

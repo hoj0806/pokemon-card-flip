@@ -9,9 +9,8 @@ import { useAppSelector } from "../hooks/useAppSelector";
 const GameEnd: React.FC<{
   setIsWin: React.Dispatch<React.SetStateAction<boolean>>;
   setIsTimeOut: React.Dispatch<React.SetStateAction<boolean>>;
-  setResetTimerKey: React.Dispatch<React.SetStateAction<number>>;
   setResetBoardKey: React.Dispatch<React.SetStateAction<number>>;
-}> = ({ setIsWin, setIsTimeOut, setResetTimerKey, setResetBoardKey }) => {
+}> = ({ setIsWin, setIsTimeOut, setResetBoardKey }) => {
   const dispatch = useAppDispatch();
 
   const handleMainButton = () => {

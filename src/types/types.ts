@@ -8,3 +8,8 @@ export interface GameTimerProps {
   duration: number;
   setIsTimeOut: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface ScoreProps {
+  children: React.ReactNode;
+  text: string;
+}

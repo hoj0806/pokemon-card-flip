@@ -3,7 +3,7 @@ import { GameTimerProps } from "../types/types";
 
 const GameTimer: React.FC<GameTimerProps> = ({ setIsTimeOut, duration }) => {
   return (
-    <div className='w-[400px] mx-auto md:w-[600px] lg:w-[1000px] xl:w-[1200px]'>
+    <div className='w-[400px] md:w-[600px] lg:w-[1000px] xl:w-[1200px]'>
       <motion.div
         className='h-[30px] bg-red-500'
         initial={{ width: "100%" }}
