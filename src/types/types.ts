@@ -27,3 +27,8 @@ export interface GameCardProps {
 export interface GameEndPros {
   isWin: boolean;
 }
+
+export interface PokedexListDetailProps {
+  selectPokemon: string;
+  setPokedexDetailPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
