@@ -8,7 +8,7 @@ const SelectDifficulty = () => {
 
   const easyModeButtonHandler = () => {
     dispatch(setMode("game"));
-    dispatch(generateShuffledPokemon(5));
+    dispatch(generateShuffledPokemon(6));
   };
 
   const normalModeButtonHandler = () => {

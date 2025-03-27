@@ -31,7 +31,6 @@ const GameBoard = () => {
   const [isWin, setIsWin] = useState(false);
   const [isClickEnabled, setIsClickEnabled] = useState(false);
 
-  const [resetGameBoardKey, setResetBoardKey] = useState(0);
   const dispatch = useAppDispatch();
   const selectCards = useAppSelector(selectCard);
   const correctPokemonsData = useAppSelector(correctPokemons);
@@ -100,15 +99,15 @@ const GameBoard = () => {
     }
   }, [correctPokemonsData.length, shuffleCards.length]);
 
-  if (shuffleCards.length === 20) {
+  if (shuffleCards.length === 12) {
     gameBoardClass =
-      "grid grid-cols-5 mx-auto  gap-4 mt-[300px] w-[400px] md:mt-[250px]  md:w-[600px] lg:grid-cols-5 lg:mt-[200px] xl:w-[700px] xl:mt-[140px]";
-  } else if (shuffleCards.length === 30) {
+      "grid gap-4 grid-cols-4 mt-[150px] md:mt-[120px] xl:mt-[50px]";
+  } else if (shuffleCards.length === 20) {
     gameBoardClass =
-      "grid grid-cols-5 mx-auto  gap-4 mt-[200px] w-[400px] md:mt-[170px] md:grid-cols-6 md:w-[600px] lg:grid-cols-10 lg:w-[1050px] lg:mt-[250px] xl:w-[1250px] xl:mt-[200px]";
+      "grid grid-cols-5 gap-4 mt-[130px] md:mt-[80px] lg:mt-[40px] xl:grid-cols-10 xl:mt-[140px]";
   } else {
     gameBoardClass =
-      "grid grid-cols-5 mx-auto  gap-4 mt-[100px] w-[400px] md:mt-[150px] md:grid-cols-8 md:w-[800px] lg:grid-cols-10 lg:w-[1050px] lg:mt-[200px] xl:w-[1250px] xl:mt-[150px]";
+      "grid grid-cols-5 gap-4 md:grid-cols-6 lg:mt-[100px] md:mt-[15px] lg:grid-cols-10 mt-[40px] xl:mt-[80px]";
   }
 
   return (
@@ -120,23 +119,19 @@ const GameBoard = () => {
         {shuffleCards.map((card) => {
           return (
             <GameCard
-              {...card}
               key={card.uniqueId}
               handleCardClick={handleCardClick}
               uniqueId={card.uniqueId}
               isCorrect={card.isCorrect}
-              resetGameBoardKey={resetGameBoardKey}
+              isFliped={card.isFliped}
+              pokemonName={card.pokemonName}
+              imageUrl={card.imageUrl}
+              type={card.types[0]}
             />
           );
         })}
       </div>
-      {isEndGame && (
-        <GameEnd
-          setIsWin={setIsWin}
-          setIsTimeOut={setIsTimeOut}
-          setResetBoardKey={setResetBoardKey}
-        />
-      )}
+      {isEndGame && <GameEnd setIsWin={setIsWin} setIsTimeOut={setIsTimeOut} />}
     </div>
   );
 };
