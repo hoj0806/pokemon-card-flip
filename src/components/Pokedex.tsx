@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { useAppSelector } from "../hooks/useAppSelector";
 import { pokemons } from "../slice/pokemonSlice";
@@ -18,7 +17,7 @@ const Pokedex = () => {
   const [pokedexDetailPopupOpen, setPokedexDetailPopupOpen] = useState(false);
   const [selectPokemon, setSelectPokemon] = useState("");
   const pokemonData = useAppSelector(pokemons);
-  const [initialData] = useState(pokemonData); // 초기 데이터 상태 저장
+  const [initialData] = useState(pokemonData);
   const [sortOrderId, setSortOrderId] = useState<"asc" | "desc">("desc");
   const [sortOrderName, setSortOrderName] = useState<"asc" | "desc">("asc");
   const [sortOrderType, setSortOrderType] = useState<"asc" | "desc">("asc");
@@ -91,7 +90,6 @@ const Pokedex = () => {
           </button>
         </div>
 
-        {/* 포켓몬 리스트 */}
         <PokedexList
           setPokedexDetailPopupOpen={setPokedexDetailPopupOpen}
           setSelectPokemon={setSelectPokemon}
@@ -108,12 +106,10 @@ const Pokedex = () => {
       </div>
 
       {pokedexDetailPopupOpen && (
-        <AnimatePresence>
-          <PokedexListDetail
-            selectPokemon={selectPokemon}
-            setPokedexDetailPopupOpen={setPokedexDetailPopupOpen}
-          />
-        </AnimatePresence>
+        <PokedexListDetail
+          selectPokemon={selectPokemon}
+          setPokedexDetailPopupOpen={setPokedexDetailPopupOpen}
+        />
       )}
     </div>
   );

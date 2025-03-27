@@ -77,7 +77,6 @@ const PokedexListDetail: React.FC<PokedexListDetailProps> = ({
       onClick={() => setPokedexDetailPopupOpen(false)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
     >
       <div
         ref={cardRef}
@@ -123,6 +122,7 @@ const PokedexListDetail: React.FC<PokedexListDetailProps> = ({
             src={selectPokemonData.imageUrl}
             alt={selectPokemonData.pokemonName}
             className='w-full h-full object-contain'
+            style={{ marginTop: "-15%" }}
           />
         </div>
 

@@ -1,3 +1,5 @@
+// props
+
 export interface SelectButtonProps {
   onClick: () => void;
   children: React.ReactNode;
@@ -31,4 +33,27 @@ export interface GameEndPros {
 export interface PokedexListDetailProps {
   selectPokemon: string;
   setPokedexDetailPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface PokedexListProps {
+  setPokedexDetailPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectPokemon: React.Dispatch<React.SetStateAction<string>>;
+  sortedPokemons: PokemonData[];
+}
+// data
+
+interface PokemonAbility {
+  abilityKoreanName: string;
+}
+
+export interface PokemonData {
+  id: number;
+  abilities: PokemonAbility[];
+  height: number;
+  weight: number;
+  types: string[];
+  isFliped: boolean;
+  isCorrect: boolean;
+  imageUrl: string;
+  pokemonName: string;
 }
