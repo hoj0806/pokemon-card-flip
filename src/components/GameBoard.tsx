@@ -25,19 +25,18 @@ import {
   resetCombo,
 } from "../slice/scoreSlice";
 const GameBoard = () => {
+  const shuffleCards = useAppSelector(shuffledPokemons);
+
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [isWin, setIsWin] = useState(false);
-
-  const isEndGame = isWin || isTimeOut;
-
-  const shuffleCards = useAppSelector(shuffledPokemons);
-  const [isClickEnabled, setIsClickEnabled] = useState(false); // 클릭 활성화 상태
+  const [isClickEnabled, setIsClickEnabled] = useState(false);
   const [resetTimerKey, setResetTimerKey] = useState(0);
   const [resetGameBoardKey, setResetBoardKey] = useState(0);
   const dispatch = useAppDispatch();
   const selectCards = useAppSelector(selectCard);
   const correctPokemonsData = useAppSelector(correctPokemons);
   const currentCombo = useAppSelector(combo);
+  const isEndGame = isWin || isTimeOut;
 
   let gameBoardClass = "";
   const handleCardClick = (uniqueId: string, pokemonName: string) => {
@@ -112,13 +111,10 @@ const GameBoard = () => {
   }
 
   return (
-    <div className='relative'>
+    <div className='relative p-8'>
       <ScoreBoard />
-      <GameTimer
-        setIsTimeOut={setIsTimeOut}
-        duration={300}
-        resetTimerKey={resetTimerKey}
-      />
+      <GameTimer setIsTimeOut={setIsTimeOut} duration={300} />
+
       <div className={gameBoardClass}>
         {shuffleCards.map((card) => {
           return (

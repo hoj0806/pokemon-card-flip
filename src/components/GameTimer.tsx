@@ -1,14 +1,10 @@
 import { motion } from "framer-motion";
+import { GameTimerProps } from "../types/types";
 
-const GameTimer: React.FC<{
-  duration: number;
-  setIsTimeOut: React.Dispatch<React.SetStateAction<boolean>>;
-  resetTimerKey: number;
-}> = ({ setIsTimeOut, duration, resetTimerKey }) => {
+const GameTimer: React.FC<GameTimerProps> = ({ setIsTimeOut, duration }) => {
   return (
-    <div className='w-[500px] mx-auto md:w-[700px] lg:w-[1000px] xl:w-[1200px]'>
+    <div className='w-[400px] mx-auto md:w-[600px] lg:w-[1000px] xl:w-[1200px]'>
       <motion.div
-        key={resetTimerKey}
         className='h-[30px] bg-red-500'
         initial={{ width: "100%" }}
         animate={{ width: "0%" }}
