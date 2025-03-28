@@ -1,7 +1,5 @@
 // props
 
-import { ReactNode } from "react";
-
 export interface SelectButtonProps {
   onClick: () => void;
   children: React.ReactNode;
@@ -68,7 +66,7 @@ export interface PokemonData {
 
 export interface ModeType {
   mode: string;
-  difficulty: "" | "easy" | "normal" | "hard";
+  difficulty: "easy" | "normal" | "hard";
 }
 
 export interface ScoreType {

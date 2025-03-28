@@ -27,7 +27,6 @@ const SelectDifficulty = () => {
 
   const handleMainButton = () => {
     dispatch(setMode("main"));
-    dispatch(setDifficulty(""));
   };
 
   return (

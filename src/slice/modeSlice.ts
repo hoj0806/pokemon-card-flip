@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { ModeType } from "../types/types";
 
-const initialState: ModeType = { mode: "main", difficulty: "" };
+const initialState: ModeType = { mode: "main", difficulty: "easy" };
 
 const modeSlice = createSlice({
   name: "modeSlice",
@@ -13,7 +13,7 @@ const modeSlice = createSlice({
     },
     setDifficulty: (
       state,
-      action: PayloadAction<"" | "easy" | "normal" | "hard">
+      action: PayloadAction<"easy" | "normal" | "hard">
     ) => {
       state.difficulty = action.payload;
     },
