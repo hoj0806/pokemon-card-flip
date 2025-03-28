@@ -1,13 +1,13 @@
-import SelectButton from "../ui/SelectButton";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { setMode } from "../slice/modeSlice";
 import { clenUpSelectCard } from "../slice/pokemonSlice";
-
 import { resetScore, resetCombo, currentScore } from "../slice/scoreSlice";
 import { useAppSelector } from "../hooks/useAppSelector";
 import { GameEndPros } from "../types/types";
+import SelectButton from "../ui/SelectButton";
 
 const GameEnd: React.FC<GameEndPros> = ({ isWin }) => {
+  const score = useAppSelector(currentScore);
   const dispatch = useAppDispatch();
 
   const handleMainButton = () => {
@@ -17,14 +17,12 @@ const GameEnd: React.FC<GameEndPros> = ({ isWin }) => {
     dispatch(resetCombo());
   };
 
-  const handleSelectDifference = () => {
+  const handleSelectDifficulty = () => {
     dispatch(setMode("selectDifference"));
     dispatch(clenUpSelectCard());
     dispatch(resetScore());
     dispatch(resetCombo());
   };
-
-  const score = useAppSelector(currentScore);
 
   return (
     <div className='w-full h-screen bg-black/80 absolute top-0 flex items-center justify-center'>
@@ -35,7 +33,7 @@ const GameEnd: React.FC<GameEndPros> = ({ isWin }) => {
         <SelectButton onClick={handleMainButton} buttonColor='#22C55E'>
           메인으로
         </SelectButton>
-        <SelectButton onClick={handleSelectDifference} buttonColor='#A855F7'>
+        <SelectButton onClick={handleSelectDifficulty} buttonColor='#A855F7'>
           난이도 선택
         </SelectButton>
         <div className='md:text-3xl text-xl'>🏆 점수 : {score}</div>

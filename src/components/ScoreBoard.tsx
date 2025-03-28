@@ -26,9 +26,7 @@ const ScoreBoard = () => {
   return (
     <div className='top-[50px] flex gap-10'>
       <Score text='score'>{score}</Score>
-      <Score text='highscore'>
-        {currentDifficulty ? highScores[currentDifficulty] : 0}
-      </Score>
+      <Score text='highscore'>{highScores[currentDifficulty]}</Score>
       <Score text='combo'>{currentCombo}</Score>
     </div>
   );
