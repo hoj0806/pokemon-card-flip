@@ -1,5 +1,7 @@
 // props
 
+import { ReactNode } from "react";
+
 export interface SelectButtonProps {
   onClick: () => void;
   children: React.ReactNode;
@@ -39,6 +41,12 @@ export interface PokedexListProps {
   setPokedexDetailPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectPokemon: React.Dispatch<React.SetStateAction<string>>;
   sortedPokemons: PokemonData[];
+}
+
+export interface PokedexSortButtonProps {
+  onClick: () => void;
+  children: React.ReactNode;
+  text: string;
 }
 // data
 
