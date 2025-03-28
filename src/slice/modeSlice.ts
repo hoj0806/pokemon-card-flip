@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { modeType } from "../types/types";
+import { ModeType } from "../types/types";
 
-const initialState: modeType = { mode: "main", difficulty: "" };
+const initialState: ModeType = { mode: "main", difficulty: "" };
 
 const modeSlice = createSlice({
   name: "modeSlice",

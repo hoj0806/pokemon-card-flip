@@ -8,23 +8,27 @@ import {
 } from "../slice/scoreSlice";
 import { useAppSelector } from "../hooks/useAppSelector";
 import { useAppDispatch } from "../hooks/useAppDispatch";
+import { selectDifficulty } from "../slice/modeSlice";
 
 const ScoreBoard = () => {
   const score = useAppSelector(currentScore);
   const highScores = useAppSelector(highScore);
   const currentCombo = useAppSelector(combo);
+  const currentDifficulty = useAppSelector(selectDifficulty);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (score > highScores) {
-      dispatch(updateHighScore(score));
+    if (currentDifficulty && score > highScores[currentDifficulty]) {
+      dispatch(updateHighScore(currentDifficulty, score));
     }
-  }, [score, highScores, dispatch]);
+  }, [score, highScores, dispatch, currentDifficulty]);
 
   return (
     <div className='top-[50px] flex gap-10'>
       <Score text='score'>{score}</Score>
-      <Score text='highscore'>{highScores}</Score>
+      <Score text='highscore'>
+        {currentDifficulty ? highScores[currentDifficulty] : 0}
+      </Score>
       <Score text='combo'>{currentCombo}</Score>
     </div>
   );

@@ -1,13 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { ScoreType } from "../types/types";
 
-interface scoreType {
-  score: number;
-  combo: number;
-  highScore: number;
-}
-
-const initialState: scoreType = { score: 0, combo: 0, highScore: 0 };
+const initialState: ScoreType = {
+  score: 0,
+  combo: 0,
+  highScore: {
+    easy: 0,
+    normal: 0,
+    hard: 0,
+  },
+};
 
 const scoreSlice = createSlice({
   name: "scoreSlice",
@@ -25,8 +28,25 @@ const scoreSlice = createSlice({
     resetCombo: (state) => {
       state.combo = 0;
     },
-    updateHighScore: (state, action: PayloadAction<number>) => {
-      state.highScore = action.payload;
+    updateHighScore: {
+      prepare(difficulty, score) {
+        return {
+          payload: {
+            difficulty,
+            score,
+          },
+        };
+      },
+      reducer(
+        state,
+        action: PayloadAction<{
+          difficulty: "easy" | "normal" | "hard";
+          score: number;
+        }>
+      ) {
+        const { difficulty, score } = action.payload;
+        state.highScore[difficulty] = score;
+      },
     },
   },
 });
