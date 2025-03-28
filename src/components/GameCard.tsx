@@ -22,8 +22,8 @@ const GameCard: React.FC<GameCardProps> = ({
         visibility: isCorrect ? "hidden" : "visible",
       }}
       transition={{
-        opacity: { duration: 1, ease: "easeInOut" },
-        visibility: { duration: 1, ease: "easeInOut" },
+        opacity: { duration: 2, ease: "easeInOut" },
+        visibility: { duration: 2, ease: "easeInOut" },
       }}
       whileHover={{
         transition: { duration: 0.2 },
@@ -40,7 +40,6 @@ const GameCard: React.FC<GameCardProps> = ({
         transition={{ duration: 0.8 }}
         whileHover={{ boxShadow: "0px 0px 12px 3px rgba(255, 215, 0, 0.8)" }}
       >
-        {/* 뒷면 (Pokéball) */}
         <div
           className='absolute inset-0 border-black border-2 rounded-lg bg-cover bg-center'
           style={{
@@ -50,7 +49,6 @@ const GameCard: React.FC<GameCardProps> = ({
           }}
         />
 
-        {/* 앞면 (포켓몬 카드) */}
         <motion.div
           whileHover={{
             boxShadow: "0px 0px 12px 3px rgba(255, 215, 0, 0.8)",
