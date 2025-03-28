@@ -24,11 +24,13 @@ import {
   increaseCombo,
   resetCombo,
 } from "../slice/scoreSlice";
+import { selectDifficulty } from "../slice/modeSlice";
 
 const GameBoard = () => {
   const dispatch = useAppDispatch();
   const shuffleCards = useAppSelector(shuffledPokemons);
   const selectCards = useAppSelector(selectCard);
+  const currentDifficulty = useAppSelector(selectDifficulty);
 
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [isWin, setIsWin] = useState(false);
@@ -38,7 +40,17 @@ const GameBoard = () => {
   const correctPokemonsData = useAppSelector(correctPokemons);
   const currentCombo = useAppSelector(combo);
 
-  let gameBoardClass = "";
+  let gameBoardClass = {
+    easy: "grid gap-4 grid-cols-4 mt-[150px] md:mt-[120px] xl:mt-[50px]",
+    normal:
+      "grid grid-cols-5 gap-4 mt-[80px] md:mt-[60px] lg:mt-[40px] xl:grid-cols-10 xl:mt-[140px]",
+    hard: "grid grid-cols-5 gap-4 md:grid-cols-6 lg:mt-[100px] md:mt-[15px] lg:grid-cols-10 mt-[40px] xl:mt-[55px]",
+  };
+
+  const validDifficulty =
+    currentDifficulty === "easy" ||
+    currentDifficulty === "normal" ||
+    currentDifficulty === "hard";
 
   const handleCardClick = (uniqueId: string, pokemonName: string) => {
     if (isClickEnabled && selectCards.length < 2) {
@@ -100,23 +112,12 @@ const GameBoard = () => {
     }
   }, [correctPokemonsData.length, shuffleCards.length]);
 
-  if (shuffleCards.length === 12) {
-    gameBoardClass =
-      "grid gap-4 grid-cols-4 mt-[150px] md:mt-[120px] xl:mt-[50px]";
-  } else if (shuffleCards.length === 20) {
-    gameBoardClass =
-      "grid grid-cols-5 gap-4 mt-[80px] md:mt-[60px] lg:mt-[40px] xl:grid-cols-10 xl:mt-[140px]";
-  } else {
-    gameBoardClass =
-      "grid grid-cols-5 gap-4 md:grid-cols-6 lg:mt-[100px] md:mt-[15px] lg:grid-cols-10 mt-[40px] xl:mt-[55px]";
-  }
-
   return (
     <div className='relative p-8 flex flex-col items-center justify-center gap-6'>
       <GameTimer setIsTimeOut={setIsTimeOut} duration={64} />
       <ScoreBoard />
-
-      <div className={gameBoardClass}>
+      <button>메인으로</button>
+      <div className={validDifficulty ? gameBoardClass[currentDifficulty] : ""}>
         {shuffleCards.map((card) => {
           return (
             <GameCard

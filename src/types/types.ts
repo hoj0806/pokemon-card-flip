@@ -65,3 +65,18 @@ export interface PokemonData {
   imageUrl: string;
   pokemonName: string;
 }
+
+export interface ModeType {
+  mode: string;
+  difficulty: "" | "easy" | "normal" | "hard";
+}
+
+export interface ScoreType {
+  score: number;
+  combo: number;
+  highScore: {
+    easy: number;
+    normal: number;
+    hard: number;
+  };
+}
