@@ -26,11 +26,11 @@ const SelectDifficulty = () => {
   };
 
   return (
-    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-16'>
+    <div className='flex flex-col gap-16 mx-auto pt-[170px] md:pt-[100px]'>
       <h1 className='text-center mb-[20px] font-bold text-3xl md:text-[50px] lg:text-[75px]'>
         난이도 선택
       </h1>
-      <div className='flex flex-col gap-[80px]'>
+      <div className='flex flex-col gap-[80px] mx-auto'>
         <SelectButton buttonColor='#EF4444' onClick={easyModeButtonHandler}>
           쉬움
         </SelectButton>

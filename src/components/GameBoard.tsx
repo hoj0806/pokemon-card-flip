@@ -64,16 +64,16 @@ const GameBoard = () => {
             dispatch(clenUpSelectCard());
             dispatch(increaseCombo());
           }, 100);
-          return () => clearTimeout(flipTimer); // 클린업
+          return () => clearTimeout(flipTimer);
         } else {
           const flipTimer = setTimeout(() => {
             dispatch(setWrongCardFlip(firstName));
             dispatch(setWrongCardFlip(secondName));
             dispatch(clenUpSelectCard());
             dispatch(resetCombo());
-          }, 850);
+          }, 800);
 
-          return () => clearTimeout(flipTimer); // 클린업
+          return () => clearTimeout(flipTimer);
         }
       }
     }
@@ -81,16 +81,16 @@ const GameBoard = () => {
 
   useEffect(() => {
     const flipTimer = setTimeout(() => {
-      dispatch(setAllCardsFlip()); // 3초 후 카드가 setFlipped뒤집힘
+      dispatch(setAllCardsFlip());
     }, 3000);
 
     const clickTimer = setTimeout(() => {
-      setIsClickEnabled(true); // 4초 후 클릭 가능
+      setIsClickEnabled(true);
     }, 4000);
 
     return () => {
       clearTimeout(flipTimer);
-      clearTimeout(clickTimer); // 타이머 정리
+      clearTimeout(clickTimer);
     };
   }, [dispatch]);
 
@@ -105,15 +105,15 @@ const GameBoard = () => {
       "grid gap-4 grid-cols-4 mt-[150px] md:mt-[120px] xl:mt-[50px]";
   } else if (shuffleCards.length === 20) {
     gameBoardClass =
-      "grid grid-cols-5 gap-4 mt-[130px] md:mt-[80px] lg:mt-[40px] xl:grid-cols-10 xl:mt-[140px]";
+      "grid grid-cols-5 gap-4 mt-[80px] md:mt-[60px] lg:mt-[40px] xl:grid-cols-10 xl:mt-[140px]";
   } else {
     gameBoardClass =
-      "grid grid-cols-5 gap-4 md:grid-cols-6 lg:mt-[100px] md:mt-[15px] lg:grid-cols-10 mt-[40px] xl:mt-[80px]";
+      "grid grid-cols-5 gap-4 md:grid-cols-6 lg:mt-[100px] md:mt-[15px] lg:grid-cols-10 mt-[40px] xl:mt-[55px]";
   }
 
   return (
     <div className='relative p-8 flex flex-col items-center justify-center gap-6'>
-      <GameTimer setIsTimeOut={setIsTimeOut} duration={100} />
+      <GameTimer setIsTimeOut={setIsTimeOut} duration={64} />
       <ScoreBoard />
 
       <div className={gameBoardClass}>
