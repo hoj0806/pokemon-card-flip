@@ -21,6 +21,10 @@ const SelectDifficulty = () => {
     dispatch(generateShuffledPokemon(15));
   };
 
+  const handleMainButton = () => {
+    dispatch(setMode("main"));
+  };
+
   return (
     <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-16'>
       <h1 className='text-center mb-[20px] font-bold text-3xl md:text-[50px] lg:text-[75px]'>
@@ -35,6 +39,9 @@ const SelectDifficulty = () => {
         </SelectButton>
         <SelectButton buttonColor='#3B82F6' onClick={hardModeButtonHandler}>
           어려움
+        </SelectButton>
+        <SelectButton buttonColor='#22C55E' onClick={handleMainButton}>
+          메인으로
         </SelectButton>
       </div>
     </div>
