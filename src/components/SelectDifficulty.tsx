@@ -1,6 +1,6 @@
 import SelectButton from "../ui/SelectButton";
 import { useAppDispatch } from "../hooks/useAppDispatch";
-import { setMode } from "../slice/modeSlice";
+import { setDifficulty, setMode } from "../slice/modeSlice";
 import { generateShuffledPokemon } from "../slice/pokemonSlice";
 
 const SelectDifficulty = () => {
@@ -8,21 +8,26 @@ const SelectDifficulty = () => {
 
   const easyModeButtonHandler = () => {
     dispatch(setMode("game"));
+    dispatch(setDifficulty("easy"));
     dispatch(generateShuffledPokemon(6));
   };
 
   const normalModeButtonHandler = () => {
     dispatch(setMode("game"));
+    dispatch(setDifficulty("normal"));
+
     dispatch(generateShuffledPokemon(10));
   };
 
   const hardModeButtonHandler = () => {
     dispatch(setMode("game"));
+    dispatch(setDifficulty("hard"));
     dispatch(generateShuffledPokemon(15));
   };
 
   const handleMainButton = () => {
     dispatch(setMode("main"));
+    dispatch(setDifficulty(""));
   };
 
   return (

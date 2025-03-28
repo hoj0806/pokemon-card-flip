@@ -21,7 +21,7 @@ const modeSlice = createSlice({
 });
 
 export default modeSlice;
-export const { setMode } = modeSlice.actions;
+export const { setMode, setDifficulty } = modeSlice.actions;
 export const selectMode = (state: RootState) => state.modeSlice.mode;
 export const selectDifficulty = (state: RootState) =>
   state.modeSlice.difficulty;
