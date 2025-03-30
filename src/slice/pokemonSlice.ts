@@ -1,48 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-
-interface PokemonAbility {
-  abilityKoreanName: string;
-}
-
-interface PokemonData {
-  id: number;
-  abilities: PokemonAbility[];
-  height: number;
-  weight: number;
-  types: string[];
-  isFliped: boolean;
-  isCorrect: boolean;
-  imageUrl: string;
-  pokemonName: string;
-}
-
-interface shuffledDataType {
-  isFliped: boolean;
-  pokemonName: string;
-  imageUrl: string;
-  uniqueId: string;
-  isCorrect: boolean;
-  types: string[];
-}
-
-interface SelctCardType {
-  pokemonName: string;
-  uniqueId: string;
-}
-// 포켓몬 데이터 배열 타입
-type PokemonDataArray = PokemonData[];
-
-// 셔플 데이터 배열 타입
-type shuffleDataArray = shuffledDataType[];
-
-type selectCardDataArray = SelctCardType[];
-
-interface pokemonSliceType {
-  data: PokemonDataArray; // 원본 데이터
-  shuffledData: shuffleDataArray; // 셔플된 데이터
-  selectCard: selectCardDataArray;
-}
+import {
+  PokemonDataArray,
+  shuffleDataArray,
+  SelctCardType,
+  pokemonSliceType,
+} from "../types/types";
 
 const initialState: pokemonSliceType = {
   data: [],
@@ -50,7 +13,6 @@ const initialState: pokemonSliceType = {
   selectCard: [],
 };
 
-// 배열을 셔플하는 함수
 const shuffleArray = (array: shuffleDataArray) => {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -74,11 +36,11 @@ const pokemonSlice = createSlice({
 
       // 동일한 카드가 두 장씩 들어가도록 설정
       const withUniqueIds = selected.flatMap((pokemon) => [
-        { ...pokemon, uniqueId: `${pokemon.id}_1` }, // 첫 번째 카드
-        { ...pokemon, uniqueId: `${pokemon.id}_2` }, // 두 번째 카드
+        { ...pokemon, uniqueId: `${pokemon.id}_1` },
+        { ...pokemon, uniqueId: `${pokemon.id}_2` },
       ]);
 
-      state.shuffledData = shuffleArray(withUniqueIds); // 셔플
+      state.shuffledData = shuffleArray(withUniqueIds);
     },
     setAllCardsFlip: (state) => {
       state.shuffledData = state.shuffledData.map((pokemon) => ({
@@ -87,11 +49,10 @@ const pokemonSlice = createSlice({
       }));
     },
     setFlipCard: (state, action: PayloadAction<string>) => {
-      // uniqueId를 매개변수로 받아 해당 카드를 찾아 isFliped를 true로 설정
       const uniqueId = action.payload;
       state.shuffledData = state.shuffledData.map((pokemon) => {
         if (pokemon.uniqueId === uniqueId) {
-          return { ...pokemon, isFliped: true }; // 해당 카드만 업데이트
+          return { ...pokemon, isFliped: true };
         }
         return pokemon;
       });
@@ -120,15 +81,14 @@ const pokemonSlice = createSlice({
       state.selectCard = [];
     },
 
-    // New reducers for sorting
     sortById: (state, action) => {
-      const sortOrder = action.payload; // 'asc' 또는 'desc'
+      const sortOrder = action.payload;
       state.data = [...state.data].sort((a, b) =>
         sortOrder === "asc" ? a.id - b.id : b.id - a.id
       );
     },
     sortByName: (state, action) => {
-      const sortOrder = action.payload; // 'asc' 또는 'desc'
+      const sortOrder = action.payload;
       state.data = [...state.data].sort((a, b) =>
         sortOrder === "asc"
           ? a.pokemonName.localeCompare(b.pokemonName, "ko")
@@ -137,17 +97,16 @@ const pokemonSlice = createSlice({
     },
 
     sortByType: (state, action: PayloadAction<"asc" | "desc">) => {
-      const sortOrder = action.payload; // 'asc' 또는 'desc'
+      const sortOrder = action.payload;
 
       state.data = [...state.data].sort((a, b) => {
-        const typeA = a.types[0]; // 포켓몬 A의 첫 번째 타입
-        const typeB = b.types[0]; // 포켓몬 B의 첫 번째 타입
+        const typeA = a.types[0];
+        const typeB = b.types[0];
 
-        // 정렬 기준에 맞게 비교
         if (sortOrder === "asc") {
-          return typeA.localeCompare(typeB); // 오름차순
+          return typeA.localeCompare(typeB);
         } else {
-          return typeB.localeCompare(typeA); // 내림차순
+          return typeB.localeCompare(typeA);
         }
       });
     },

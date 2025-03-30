@@ -78,3 +78,26 @@ export interface ScoreType {
     hard: number;
   };
 }
+
+export interface shuffledDataType {
+  isFliped: boolean;
+  pokemonName: string;
+  imageUrl: string;
+  uniqueId: string;
+  isCorrect: boolean;
+  types: string[];
+}
+
+export interface SelctCardType {
+  pokemonName: string;
+  uniqueId: string;
+}
+export type PokemonDataArray = PokemonData[];
+export type shuffleDataArray = shuffledDataType[];
+export type selectCardDataArray = SelctCardType[];
+
+export interface pokemonSliceType {
+  data: PokemonDataArray;
+  shuffledData: shuffleDataArray;
+  selectCard: selectCardDataArray;
+}
