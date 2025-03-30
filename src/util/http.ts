@@ -15,12 +15,15 @@ export const fetchPokemonData = async (): Promise<PokemonDataArray> => {
     for (let i = 1; i <= 151; i++) {
       // 각 Pokémon에 대해 fetch 요청을 Promise로 생성
       const pokemonPromise = (async () => {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
+        const response = await fetch(
+          `https://pokeapi.co/api/vdd2/pokemon/${i}/`
+        );
         const speciesResponse = await fetch(
           `https://pokeapi.co/api/v2/pokemon-species/${i}`
         );
 
-        if (!response.ok) throw new Error(`Failed to fetch Pokémon #${i}`);
+        if (!response.ok)
+          throw new Error(`포켓몬 데이터를 불러오지 못했습니다!`);
 
         const data = await response.json();
         const speciesData = await speciesResponse.json();

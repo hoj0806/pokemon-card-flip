@@ -17,7 +17,7 @@ const App = () => {
   const currentMode = useAppSelector(selectMode);
   const dispatch = useAppDispatch();
 
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending, isError, error } = useQuery({
     queryFn: fetchPokemonData,
     queryKey: ["pokemon"],
   });
@@ -35,7 +35,7 @@ const App = () => {
   }
 
   if (isError) {
-    content = <div>에러발생!!</div>;
+    content = <div>{error.message}</div>;
   }
 
   if (data) {
