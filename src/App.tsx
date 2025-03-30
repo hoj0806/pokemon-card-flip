@@ -12,12 +12,13 @@ import { useEffect } from "react";
 import { setPokemonData } from "./slice/pokemonSlice";
 import { useAppDispatch } from "./hooks/useAppDispatch";
 import LoadingIndicator from "./components/LoadingIndicator";
+import ErrorBlock from "./components/ErrorBlock";
 
 const App = () => {
   const currentMode = useAppSelector(selectMode);
   const dispatch = useAppDispatch();
 
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending, isError, error } = useQuery({
     queryFn: fetchPokemonData,
     queryKey: ["pokemon"],
   });
@@ -35,7 +36,7 @@ const App = () => {
   }
 
   if (isError) {
-    content = <div>에러발생!!</div>;
+    content = <ErrorBlock>{error.message}</ErrorBlock>;
   }
 
   if (data) {

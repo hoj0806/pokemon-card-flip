@@ -25,7 +25,7 @@ const GameEnd: React.FC<GameEndPros> = ({ isWin }) => {
   };
 
   return (
-    <div className='w-full h-screen bg-black/80 absolute top-0 flex items-center justify-center'>
+    <div className='w-full min-h-screen bg-black/80 absolute top-0 flex items-center justify-center'>
       <div className='w-[400px] h-[300px] bg-gray-200 border-[8px] border-yellow-400 rounded-none text-center p-4 flex flex-col items-center gap-8 pixel-font shadow-lg md:w-[500px] md:h-[350px] md:p-6 lg:w-[700px] lg:h-[450px] lg:p-8'>
         <p className='md:text-3xl text-black text-xl'>
           {isWin ? "🎉 클리어!" : "⌛ 시간 종료!"}

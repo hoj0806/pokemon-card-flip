@@ -113,10 +113,9 @@ const GameBoard = () => {
   }, [correctPokemonsData.length, shuffleCards.length]);
 
   return (
-    <div className='relative p-8 flex flex-col items-center justify-center gap-6'>
-      <GameTimer setIsTimeOut={setIsTimeOut} duration={14} />
+    <div className='relative p-8 flex flex-col items-center justify-center gap-6 h-full'>
+      <GameTimer setIsTimeOut={setIsTimeOut} duration={64} />
       <ScoreBoard />
-      <button>메인으로</button>
       <div className={validDifficulty ? gameBoardClass[currentDifficulty] : ""}>
         {shuffleCards.map((card) => {
           return (
