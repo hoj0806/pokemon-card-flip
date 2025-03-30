@@ -75,7 +75,7 @@ const GameBoard = () => {
             dispatch(setCorrectCard(firstName));
             dispatch(clenUpSelectCard());
             dispatch(increaseCombo());
-          }, 100);
+          }, 50);
           return () => clearTimeout(flipTimer);
         } else {
           const flipTimer = setTimeout(() => {
@@ -83,7 +83,7 @@ const GameBoard = () => {
             dispatch(setWrongCardFlip(secondName));
             dispatch(clenUpSelectCard());
             dispatch(resetCombo());
-          }, 800);
+          }, 700);
 
           return () => clearTimeout(flipTimer);
         }
