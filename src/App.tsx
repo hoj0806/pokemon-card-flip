@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { setPokemonData } from "./slice/pokemonSlice";
 import { useAppDispatch } from "./hooks/useAppDispatch";
 import LoadingIndicator from "./components/LoadingIndicator";
+import ErrorBlock from "./components/ErrorBlock";
 
 const App = () => {
   const currentMode = useAppSelector(selectMode);
@@ -35,7 +36,7 @@ const App = () => {
   }
 
   if (isError) {
-    content = <div>{error.message}</div>;
+    content = <ErrorBlock>{error.message}</ErrorBlock>;
   }
 
   if (data) {

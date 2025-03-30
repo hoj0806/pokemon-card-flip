@@ -36,7 +36,9 @@ const PokedexList: React.FC<PokedexListProps> = ({
 
               <div className='absolute bottom-1 right-1 w-4 h-4 bg-white/30 rounded-full blur-[3px]' />
             </div>
-            <p className='text-sm md:text-lg text-center'>{data.pokemonName}</p>
+            <p className='text-sm md:text-lg text-center mt-2'>
+              {data.pokemonName}
+            </p>
           </li>
         );
       })}
