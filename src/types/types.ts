@@ -101,3 +101,31 @@ export interface pokemonSliceType {
   shuffledData: shuffleDataArray;
   selectCard: selectCardDataArray;
 }
+
+export interface AbilityInfo {
+  ability: {
+    name: string;
+    url: string;
+  };
+  is_hidden: boolean;
+  slot: number;
+}
+
+export interface LanguageEntry {
+  language: {
+    name: string;
+    url: string;
+  };
+  name: string;
+}
+
+interface TypeInfo {
+  name: string; // 타입의 영어 이름 (예: "normal")
+  url: string; // 타입의 API URL
+}
+
+// 포켓몬 타입
+export interface PokemonType {
+  slot: number; // 타입 슬롯 번호 (예: 1)
+  type: TypeInfo; // 타입 정보 (name, url 포함)
+}

@@ -1,6 +1,13 @@
-export const fetchPokemonData = async (): Promise<any[]> => {
+import {
+  AbilityInfo,
+  LanguageEntry,
+  PokemonDataArray,
+  PokemonType,
+} from "../types/types";
+
+export const fetchPokemonData = async (): Promise<PokemonDataArray> => {
   try {
-    let fetchedPokemons = [];
+    let fetchedPokemons: PokemonDataArray = [];
 
     // 비동기적으로 처리할 모든 Promise들을 저장할 배열
     const pokemonPromises = [];
@@ -20,7 +27,7 @@ export const fetchPokemonData = async (): Promise<any[]> => {
 
         // koreanName을 비동기적으로 가져오기 (병렬 처리)
         const koreanNamePromise = speciesData.names.find(
-          (name: any) => name.language.name === "ko"
+          (name: LanguageEntry) => name.language.name === "ko"
         );
         const koreanName = koreanNamePromise ? koreanNamePromise.name : null;
 
@@ -28,29 +35,31 @@ export const fetchPokemonData = async (): Promise<any[]> => {
         const abilityData = data.abilities;
 
         // typesData에 대한 비동기 요청을 Promise.all로 병렬 처리
-        const typesPromises = typesData.map(async (type: any) => {
+        const typesPromises = typesData.map(async (type: PokemonType) => {
           const typeResponse = await fetch(type.type.url);
           const typeData = await typeResponse.json();
           const koreanTypeName = typeData.names.find(
-            (name: any) => name.language.name === "ko"
+            (name: LanguageEntry) => name.language.name === "ko"
           ).name;
           return koreanTypeName; // 반환값으로 각 타입의 한국어 이름을 반환
         });
 
         // abilityData에 대한 비동기 요청을 Promise.all로 병렬 처리
-        const abilitiesPromises = abilityData.map(async (ability: any) => {
-          const abilityResponse = await fetch(ability.ability.url);
-          const abilityData = await abilityResponse.json();
+        const abilitiesPromises = abilityData.map(
+          async (ability: AbilityInfo) => {
+            const abilityResponse = await fetch(ability.ability.url);
+            const abilityData = await abilityResponse.json();
 
-          // 한국어 이름 가져오기
-          const abilityKoreanName = abilityData.names.find(
-            (name: any) => name.language.name === "ko"
-          )?.name;
+            // 한국어 이름 가져오기
+            const abilityKoreanName = abilityData.names.find(
+              (name: LanguageEntry) => name.language.name === "ko"
+            )?.name;
 
-          return {
-            abilityKoreanName,
-          };
-        });
+            return {
+              abilityKoreanName,
+            };
+          }
+        );
 
         // 모든 타입과 능력에 대한 요청이 완료될 때까지 기다리고, 결과를 types 및 abilities 배열에 저장
         const types = await Promise.all(typesPromises);
