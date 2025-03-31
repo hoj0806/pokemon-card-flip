@@ -41,6 +41,7 @@ PokeApi를 통해 비동기적으로 데이터를 관리해 그 데이터를 이
 > https://pokeapi.co/docs/v2
 
 <br/>
+
 ## ⚒️ 주요 기능
 
 <table style="text-align: center; width: 100%">
