@@ -1,46 +1,62 @@
-# Getting Started with Create React App
+# PokeFlip
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+포켓몬 카드를 이용해 짝맞추기 게임을 즐기고 포켓몬 도감을 볼 수 있는 웹사이트 입니다.
 
-## Available Scripts
+<br/>
 
-In the project directory, you can run:
+## 🔗 배포 링크
 
-### `npm start`
+> https://pokeflip-65wt85h5g-12123s-projects.vercel.app/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## 🗓️ 개발 기간
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> 2025.03.13 ~ 2025.03.30
 
-### `npm run build`
+<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 목표
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+PokeApi를 통해 비동기적으로 데이터를 관리해 그 데이터를 이용해 포켓몬 카드를 만들고 짝맞추기 게임, 도감 서비스를 이용자에게 제공합니다
+<br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 개발일지 
+> https://hjh0806.tistory.com/category/%ED%86%A0%EC%9D%B4%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/Pokemon%20Card%20Flip
+<br/>
 
-### `npm run eject`
+## 💻 기술 스택
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### ▶︎ Framework - React
+#### ▶︎ build - create-react-app
+#### ▶︎ Programming Language - Typescript
+#### ▶︎ CSS - Tailwind, framer-motion
+#### ▶︎ State Management Library - tanstackquery, reduxToolkit
+#### ▶︎ Version Control - git, github
+#### ▶︎ Design - Figma
+<br/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 사용 API 
+> https://pokeapi.co/docs/v2
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<br/>
+## ⚒️ 주요 기능
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<table style="text-align: center; width: 100%">
+  <tbody>
+    <tr>
+      <tr>
+        <td><img src="https://github.com/user-attachments/assets/f854e229-8426-4a86-bb6d-a660492b20e3"></td>
+        <td><img src="https://github.com/user-attachments/assets/9960f1cd-c706-4a8b-ae6e-0fac6f946046"></td>
+      </tr>
+      <tr>
+        <td><p align="center">카드 짝맞추기 게임</p></td>
+        <td><p align="center">포켓몬 도감</p></td>
+      </tr>
+    </tr>
+  </tbody>
+</table>
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
